@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 body {
@@ -81,6 +82,9 @@ body {
     background:#2563eb;
 
     color:white;
+    a{
+        color: white;
+    }
 
 }
 

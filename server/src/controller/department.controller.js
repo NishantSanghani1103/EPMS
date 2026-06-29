@@ -29,7 +29,8 @@ export const departmentAddController = async (req, res) => {
 export const departmentViewController = async (req, res) => {
     try {
         const data = await departmentViewService()
-
+        console.log(data);
+        
         return response(res, {
             status: true,
             statusCode: 200,

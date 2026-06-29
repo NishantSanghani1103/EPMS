@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-department-add',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './department-add.html',
   styleUrl: './department-add.scss',
 })
-export class DepartmentAdd {}
+export class DepartmentAdd {
+
+}

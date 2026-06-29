@@ -26,7 +26,10 @@ export class AuthService {
     localStorage.setItem('TOKEN', res['token']);
     localStorage.setItem('USER', JSON.stringify(res.data));
     if (res.data?.role === 'admin') {
-      this.router.navigate(['/admin/dashboard'])
+      this.router.navigate(['/admin/dashboard']);
+    }
+    if (res.data?.role === 'manager') {
+      this.router.navigate(['/manager'])
     }
   }
 }

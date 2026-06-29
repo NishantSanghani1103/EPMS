@@ -42,6 +42,8 @@ export class ApiService {
       token = localStorage.getItem('TOKEN');
     }
 
+    console.log(token);
+    
     const isFormData = body instanceof FormData;
     const headersObj: any = {
       'Cache-Control': 'no-cache',
@@ -53,6 +55,8 @@ export class ApiService {
       headersObj['Authorization'] = `Bearer ${token}`;
     }
     const headers = new HttpHeaders(headersObj);
+    console.log(headers);
+    
     let response: any;
     try {
       switch (method) {
@@ -89,7 +93,7 @@ export class ApiService {
       return resp;
     } catch (error: any) {
       const fieldErrors = error.error;
-      console.log(fieldErrors);
+      // console.log(fieldErrors);
       if (fieldErrors?.errors) {
         this.toast.error(fieldErrors?.errors);
         throw error;

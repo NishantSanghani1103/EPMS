@@ -9,7 +9,7 @@ export const registerController = async (req, res) => {
             req.body.profileImage = req.files.profileImage[0].filename
         }
         const data = await registerService(req.body)
-        console.log(data);
+        // console.log(data);
 
         if (!data.status) {
             if (req.files && req.files.profileImage) {

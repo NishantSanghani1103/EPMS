@@ -1,297 +1,151 @@
 <div class="container-fluid py-4">
-
-    <!-- Page Header -->
-    <div class="page-header d-flex justify-content-between align-items-center mb-4">
-
-        <div>
-            <h2 class="fw-bold mb-1">Departments</h2>
-            <p class="text-muted mb-0">
-                Manage all departments within your organization.
-            </p>
-        </div>
-
-        <button class="btn btn-primary px-4">
-            <i class="bi bi-plus-circle me-2"></i>
-            Add Department
-        </button>
-
+  <!-- Page Header -->
+  <div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Departments</h2>
+      <p class="text-muted mb-0">Manage all departments within your organization.</p>
     </div>
 
-    <!-- Filters -->
-    <div class="card shadow-sm border-0 mb-4">
+    <button routerLink="/admin/department/add" class="btn btn-primary px-4">
+      <i class="bi bi-plus-circle me-2"></i>
+      Add Department
+    </button>
+  </div>
 
-        <div class="card-body">
+  <!-- Filters -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-lg-5">
+          <div class="input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-search"></i>
+            </span>
 
-            <div class="row g-3">
-
-                <div class="col-lg-5">
-
-                    <div class="input-group">
-
-                        <span class="input-group-text bg-white">
-                            <i class="bi bi-search"></i>
-                        </span>
-
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Search department...">
-
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3">
-
-                    <select class="form-select">
-
-                        <option>All Status</option>
-                        <option>Active</option>
-                        <option>Inactive</option>
-
-                    </select>
-
-                </div>
-
-                <div class="col-lg-3">
-
-                    <select class="form-select">
-
-                        <option>Newest First</option>
-                        <option>Oldest First</option>
-                        <option>Name A-Z</option>
-
-                    </select>
-
-                </div>
-
-                <div class="col-lg-1">
-
-                    <button class="btn btn-outline-secondary w-100">
-                        <i class="bi bi-arrow-clockwise"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
+            <input type="text" class="form-control" placeholder="Search department..." />
+          </div>
         </div>
 
+        <div class="col-lg-3">
+          <select class="form-select">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+        </div>
+
+        <div class="col-lg-3">
+          <select class="form-select">
+            <option>Newest First</option>
+            <option>Oldest First</option>
+            <option>Name A-Z</option>
+          </select>
+        </div>
+
+        <div class="col-lg-1">
+          <button class="btn btn-outline-secondary w-100">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Department Table -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+
+              <th>Department</th>
+
+              <th>Description</th>
+
+              <th>Employees</th>
+
+              <th>Status</th>
+
+              <th>Created</th>
+
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (item of deptData(); track item.id) {
+              <tr>
+                <td>{{ $index + 1 }}</td>
+
+                <td>
+                  <strong class="text-capitalize">{{ item.name }}</strong>
+                </td>
+
+                <td class="text-capitalize">{{ item.description }}</td>
+
+                <td>
+                  <span class="badge bg-primary"> 0 Employees </span>
+                </td>
+
+                <td>
+                  <span class="badge bg-success"> Active </span>
+                </td>
+
+                <td>{{ item.createdAt | date }}</td>
+
+                <td class="text-center">
+                  <button class="btn btn-sm btn-light me-2">
+                    <i class="bi bi-eye"></i>
+                  </button>
+
+                  <button class="btn btn-sm btn-warning me-2">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+
+                  <button (click)="deleteDept(item.id)" class="btn btn-sm btn-danger">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+            @empty {
+              <tr>
+                <td>Department Not Found....</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <!-- Department Table -->
-    <div class="card shadow-sm border-0">
-
-        <div class="card-body p-0">
-
-            <div class="table-responsive">
-
-                <table class="table align-middle mb-0">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>#</th>
-
-                            <th>Department</th>
-
-                            <th>Description</th>
-
-                            <th>Employees</th>
-
-                            <th>Status</th>
-
-                            <th>Created</th>
-
-                            <th class="text-center">Actions</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-
-                            <td>1</td>
-
-                            <td>
-                                <strong>Information Technology</strong>
-                            </td>
-
-                            <td>
-                                Software Development & Infrastructure
-                            </td>
-
-                            <td>
-                                <span class="badge bg-primary">
-                                    28 Employees
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="badge bg-success">
-                                    Active
-                                </span>
-                            </td>
-
-                            <td>
-                                12 Jan 2026
-                            </td>
-
-                            <td class="text-center">
-
-                                <button class="btn btn-sm btn-light me-2">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-warning me-2">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>2</td>
-
-                            <td>
-                                <strong>Human Resources</strong>
-                            </td>
-
-                            <td>
-                                Recruitment & Employee Management
-                            </td>
-
-                            <td>
-                                <span class="badge bg-primary">
-                                    10 Employees
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="badge bg-success">
-                                    Active
-                                </span>
-                            </td>
-
-                            <td>
-                                08 Jan 2026
-                            </td>
-
-                            <td class="text-center">
-
-                                <button class="btn btn-sm btn-light me-2">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-warning me-2">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>3</td>
-
-                            <td>
-                                <strong>Finance</strong>
-                            </td>
-
-                            <td>
-                                Accounting & Financial Operations
-                            </td>
-
-                            <td>
-                                <span class="badge bg-primary">
-                                    8 Employees
-                                </span>
-                            </td>
-
-                            <td>
-                                <span class="badge bg-secondary">
-                                    Inactive
-                                </span>
-                            </td>
-
-                            <td>
-                                15 Jan 2026
-                            </td>
-
-                            <td class="text-center">
-
-                                <button class="btn btn-sm btn-light me-2">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-warning me-2">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-        <!-- Pagination -->
-
-        <div class="card-footer bg-white">
-
-            <nav>
-
-                <ul class="pagination justify-content-end mb-0">
-
-                    <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                    </li>
-
-                    <li class="page-item active">
-                        <a class="page-link">1</a>
-                    </li>
-
-                    <li class="page-item">
-                        <a class="page-link">2</a>
-                    </li>
-
-                    <li class="page-item">
-                        <a class="page-link">3</a>
-                    </li>
-
-                    <li class="page-item">
-                        <a class="page-link">Next</a>
-                    </li>
-
-                </ul>
-
-            </nav>
-
-        </div>
-
+    <!-- Pagination -->
+
+    <div class="card-footer bg-white">
+      <nav>
+        <ul class="pagination justify-content-end mb-0">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link">1</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link">2</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link">3</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link">Next</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-
+  </div>
 </div>

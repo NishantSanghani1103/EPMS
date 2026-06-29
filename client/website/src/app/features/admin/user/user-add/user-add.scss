@@ -1,0 +1,26 @@
+.card {
+    border-radius: 15px;
+}
+
+.form-control,
+.form-select {
+    height: 48px;
+    border-radius: 10px;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.card-footer {
+    border-top: 1px solid #eee;
+}
+
+.btn {
+    min-width: 120px;
+}
