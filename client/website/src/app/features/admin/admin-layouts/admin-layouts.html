@@ -1,0 +1,120 @@
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="bi bi-kanban-fill"></i>
+
+            <span>EPMS</span>
+
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </li>
+
+            <li>
+                <i class="bi bi-building"></i>
+                <span>Departments</span>
+            </li>
+
+            <li>
+                <i class="bi bi-people-fill"></i>
+                <span>Users</span>
+            </li>
+
+            <li>
+                <i class="bi bi-kanban"></i>
+                <span>Projects</span>
+            </li>
+
+            <li>
+                <i class="bi bi-bar-chart-line"></i>
+                <span>Reports</span>
+            </li>
+
+            <li>
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+            </li>
+
+        </ul>
+
+        <div class="sidebar-footer">
+
+            <img
+                src="https://i.pravatar.cc/60"
+                class="profile">
+
+            <div>
+
+                <h6>Admin</h6>
+
+                <small>Administrator</small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <!-- Navbar -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                <i class="bi bi-search"></i>
+
+                <input
+                    type="text"
+                    placeholder="Search...">
+
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn">
+
+                    <i class="bi bi-bell"></i>
+
+                    <span class="badge">3</span>
+
+                </button>
+
+                <button class="icon-btn">
+
+                    <i class="bi bi-envelope"></i>
+
+                    <span class="badge">5</span>
+
+                </button>
+
+                <img
+                    src="https://i.pravatar.cc/45"
+                    class="user-image">
+
+            </div>
+
+        </header>
+
+        <!-- Router Outlet -->
+
+        <main class="page-content">
+
+            <router-outlet></router-outlet>
+
+        </main>
+
+    </div>
+
+</div>

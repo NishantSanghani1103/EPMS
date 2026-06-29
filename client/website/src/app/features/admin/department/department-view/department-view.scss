@@ -1,0 +1,75 @@
+.page-header {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .05);
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.table thead {
+    background: #f8f9fa;
+}
+
+.table th {
+    padding: 16px;
+    font-weight: 600;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 16px;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.badge {
+    padding: 8px 12px;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+.btn-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group-text {
+    border-right: 0;
+}
+
+.form-control {
+    border-left: 0;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: none;
+    border-color: #86b7fe;
+}
+
+.pagination .page-link {
+    border-radius: 8px;
+    margin: 0 3px;
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        text-align: center;
+    }
+
+    .page-header .btn {
+        margin-top: 15px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,347 @@
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-1">Welcome Back, Admin 👋</h2>
+            <p class="text-muted mb-0">
+                Here's what's happening in your organization today.
+            </p>
+        </div>
+
+        <button class="btn btn-primary px-4">
+            <i class="bi bi-plus-circle me-2"></i>
+            New Project
+        </button>
+
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card users">
+
+                <div class="icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+
+                <div>
+                    <span>Total Users</span>
+                    <h3>248</h3>
+                    <small class="text-success">
+                        +12 This Month
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card department">
+
+                <div class="icon">
+                    <i class="bi bi-building"></i>
+                </div>
+
+                <div>
+                    <span>Departments</span>
+                    <h3>12</h3>
+                    <small class="text-success">
+                        Active
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card projects">
+
+                <div class="icon">
+                    <i class="bi bi-kanban-fill"></i>
+                </div>
+
+                <div>
+                    <span>Projects</span>
+                    <h3>36</h3>
+                    <small class="text-warning">
+                        8 Ongoing
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card tasks">
+
+                <div class="icon">
+                    <i class="bi bi-list-task"></i>
+                </div>
+
+                <div>
+                    <span>Pending Tasks</span>
+                    <h3>154</h3>
+                    <small class="text-danger">
+                        15 Overdue
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-lg-8">
+
+            <div class="dashboard-box">
+
+                <div class="box-header">
+                    <h5>Project Progress</h5>
+                </div>
+
+                <div class="chart-placeholder">
+
+                    <i class="bi bi-bar-chart-line-fill"></i>
+
+                    <h5>Project Analytics Chart</h5>
+
+                    <p class="text-muted">
+                        Chart.js / ApexCharts will be integrated later.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="dashboard-box">
+
+                <div class="box-header">
+                    <h5>Task Distribution</h5>
+                </div>
+
+                <div class="chart-placeholder small-chart">
+
+                    <i class="bi bi-pie-chart-fill"></i>
+
+                    <p>Pie Chart Placeholder</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tables -->
+    <div class="row g-4">
+
+        <!-- Recent Projects -->
+
+        <div class="col-lg-7">
+
+            <div class="dashboard-box">
+
+                <div class="box-header d-flex justify-content-between">
+
+                    <h5>Recent Projects</h5>
+
+                    <a href="#">View All</a>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Project</th>
+                                <th>Manager</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>ERP System</td>
+
+                                <td>John Doe</td>
+
+                                <td>
+
+                                    <span class="badge bg-success">
+                                        Active
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="progress">
+
+                                        <div
+                                            class="progress-bar bg-primary"
+                                            style="width:80%">
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>HR Portal</td>
+
+                                <td>Sarah Smith</td>
+
+                                <td>
+
+                                    <span class="badge bg-warning text-dark">
+                                        In Progress
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="progress">
+
+                                        <div
+                                            class="progress-bar bg-warning"
+                                            style="width:60%">
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>CRM Dashboard</td>
+
+                                <td>Alex</td>
+
+                                <td>
+
+                                    <span class="badge bg-danger">
+                                        Delayed
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="progress">
+
+                                        <div
+                                            class="progress-bar bg-danger"
+                                            style="width:35%">
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Activity -->
+
+        <div class="col-lg-5">
+
+            <div class="dashboard-box">
+
+                <div class="box-header">
+
+                    <h5>Recent Activity</h5>
+
+                </div>
+
+                <div class="activity-list">
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon bg-primary">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+
+                        <div>
+                            <strong>New Employee Added</strong>
+                            <p class="mb-0 text-muted">
+                                Michael joined IT Department
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon bg-success">
+                            <i class="bi bi-check2-circle"></i>
+                        </div>
+
+                        <div>
+                            <strong>Project Completed</strong>
+                            <p class="mb-0 text-muted">
+                                Inventory System Completed
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon bg-warning">
+                            <i class="bi bi-exclamation-circle"></i>
+                        </div>
+
+                        <div>
+                            <strong>Deadline Approaching</strong>
+                            <p class="mb-0 text-muted">
+                                CRM Dashboard Due Tomorrow
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,120 @@
+<div class="login-page">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <!-- Left Side -->
+      <div class="col-lg-6 d-none d-lg-flex left-panel">
+        <div class="content">
+          <div class="logo">
+            <i class="bi bi-kanban-fill"></i>
+            <h2>EPMS</h2>
+          </div>
+
+          <h1>Enterprise Project Management System</h1>
+
+          <p class="description">
+            Manage projects, tasks, employees and reports from one powerful dashboard.
+          </p>
+
+          <div class="features">
+            <div class="feature-item">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>Project Management</span>
+            </div>
+
+            <div class="feature-item">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>Task Tracking</span>
+            </div>
+
+            <div class="feature-item">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>Team Collaboration</span>
+            </div>
+
+            <div class="feature-item">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>Real-Time Reports</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="col-lg-6 col-12 right-panel">
+        <div class="login-card">
+          <div class="text-center mb-4">
+            <div class="mobile-logo d-lg-none">
+              <i class="bi bi-kanban-fill"></i>
+            </div>
+
+            <h3>Welcome Back</h3>
+
+            <p>Login to continue managing your projects.</p>
+          </div>
+
+          <form (submit)="userlogin()" [formGroup]="loginForm">
+            <div class="mb-3">
+              <label class="form-label"> Email Address </label>
+
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-envelope"></i>
+                </span>
+
+                <input
+                  formControlName="email"
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <app-form-validation [control]="f['email']" label="email"></app-form-validation>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label"> Password </label>
+
+              <div class="input-group">
+                    <span class="input-group-text">
+                    <i class="bi bi-lock"></i>
+                    </span>
+
+                <input
+                  formControlName="password"
+                  [type]="showPassword() ? 'text' : 'password'"
+                  class="form-control"
+                  placeholder="Enter password"
+                />
+
+                <span (click)="showPassword.update((value) => !value)" class="input-group-text">
+                  <i class="bi bi-eye"></i>
+                </span>
+              </div>
+              <app-form-validation [control]="f['password']" label="password"></app-form-validation>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" />
+
+                <label class="form-check-label"> Remember Me </label>
+              </div>
+
+              <a href="#"> Forgot Password? </a>
+            </div>
+
+            <button class="btn btn-primary w-100 login-btn">Login</button>
+          </form>
+
+          <hr />
+
+          <div class="text-center">
+            Don't have an account?
+
+            <a href="#"> Register </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

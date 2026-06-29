@@ -1,0 +1,107 @@
+@if (control && control.touched && control.invalid && control.errors; as errors) {
+  <div class="mt-1">
+
+    @if (errors['required']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ label }} is required.
+      </small>
+    }
+
+    @if (errors['requiredTrue']) {
+      <small class="text-danger fw-bold text-capitalize">
+        You must accept {{ label }}.
+      </small>
+    }
+
+    @if (errors['email']) {
+      <small class="text-danger fw-bold text-capitalize">
+        Please enter a valid email address.
+      </small>
+    }
+
+    @if (errors['minlength']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ label }} must contain at least
+        {{ errors['minlength'].requiredLength }}
+        characters.
+      </small>
+    }
+
+    @if (errors['maxlength']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ label }} cannot exceed
+        {{ errors['maxlength'].requiredLength }}
+        characters.
+      </small>
+    }
+
+    @if (errors['min']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ label }} must be at least
+        {{ errors['min'].min }}.
+      </small>
+    }
+
+    @if (errors['max']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ label }} cannot be greater than
+        {{ errors['max'].max }}.
+      </small>
+    }
+
+    @if (errors['pattern']) {
+      <small class="text-danger fw-bold text-capitalize">
+        Invalid {{ label }} format.
+      </small>
+    }
+
+    @if (errors['nullValidator']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ label }} is invalid.
+      </small>
+    }
+
+    @if (errors['passwordMismatch']) {
+      <small class="text-danger fw-bold text-capitalize">
+        Passwords do not match.
+      </small>
+    }
+
+    @if (errors['invalidPhone']) {
+      <small class="text-danger fw-bold text-capitalize">
+        Please enter a valid phone number.
+      </small>
+    }
+
+    @if (errors['invalidUrl']) {
+      <small class="text-danger fw-bold text-capitalize">
+        Please enter a valid URL.
+      </small>
+    }
+
+    @if (errors['invalidUsername']) {
+      <small class="text-danger fw-bold text-capitalize">
+        Username contains invalid characters.
+      </small>
+    }
+
+    @if (errors['duplicate']) {
+      <small class="text-danger fw-bold text-capitalize">
+        This {{ label }} already exists.
+      </small>
+    }
+
+    @if (errors['serverError']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ errors['serverError'] }}
+      </small>
+    }
+
+    @if (errors['custom']) {
+      <small class="text-danger fw-bold text-capitalize">
+        {{ errors['custom'] }}
+      </small>
+    }
+
+  </div>
+}

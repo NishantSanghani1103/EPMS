@@ -1,0 +1,134 @@
+.login-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.left-panel {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+.content {
+    max-width: 500px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 60px;
+
+    i {
+        font-size: 48px;
+    }
+
+    h2 {
+        margin: 0;
+        font-weight: 700;
+    }
+}
+
+.content h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+
+.description {
+    font-size: 18px;
+    opacity: .9;
+    margin-bottom: 50px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 18px;
+
+    i {
+        font-size: 22px;
+    }
+}
+
+.right-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 470px;
+    background: white;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, .08);
+}
+
+.mobile-logo {
+    font-size: 55px;
+    color: #0d6efd;
+    margin-bottom: 15px;
+}
+
+.login-card h3 {
+    font-weight: 700;
+}
+
+.login-card p {
+    color: #6c757d;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.input-group-text {
+    background: #fff;
+}
+
+.form-control {
+    height: 50px;
+    border-left: 0;
+}
+
+.input-group-text:last-child {
+    cursor: pointer;
+}
+
+.login-btn {
+    height: 50px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    margin: 30px 0;
+}
+
+@media(max-width:991px) {
+
+    .right-panel {
+        min-height: 100vh;
+    }
+
+    .login-card {
+        padding: 35px;
+    }
+
+}
