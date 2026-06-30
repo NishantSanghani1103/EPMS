@@ -29,13 +29,23 @@ export const departmentAddService = async (data) => {
 
 export const departmentViewService = async () => {
     try {
-        const data = await departmentModel.findAll({order:[["createdAt","DESC"]]})
+        const data = await departmentModel.findAll({ order: [["createdAt", "DESC"]] })
         return data
     } catch (error) {
         throw error
     }
 }
 
+
+export const departmentViewByIdService = async (id) => {
+    try {
+        const data = await departmentModel.findByPk(id)
+
+        return data
+    } catch (error) {
+        throw error
+    }
+}
 
 export const departmentEditService = async (id, data) => {
     try {
@@ -49,7 +59,7 @@ export const departmentEditService = async (id, data) => {
             }
         }
 
-        if (checkDept.name === data.name) {
+        if (checkDept.name === data.name && checkDept.description === data.description) {
             return {
                 status: false,
                 statusCode: 401,
@@ -61,13 +71,6 @@ export const departmentEditService = async (id, data) => {
                 name: data.name
             }
         })
-        if (checkDuplicateDept) {
-            return {
-                status: false,
-                statusCode: 401,
-                message: messages.dept.DEPT_ALREADY_EXIST
-            }
-        }
         await checkDept.update(data)
         return {
             status: true

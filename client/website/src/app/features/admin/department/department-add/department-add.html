@@ -1,139 +1,93 @@
 <div class="container-fluid py-4">
+  <!-- Breadcrumb -->
+  <div class="mb-4">
+    <h2 class="fw-bold mb-1">Add Department</h2>
 
-    <!-- Breadcrumb -->
-    <div class="mb-4">
+    <p class="text-muted mb-0">Create a new department for your organization.</p>
+  </div>
 
-        <h2 class="fw-bold mb-1">
-            Add Department
-        </h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <form (submit)="deptAdd()" [formGroup]="deptFrom">
+          <div class="card-header bg-white py-4">
+            <h4 class="mb-1 fw-bold">Department Information</h4>
 
-        <p class="text-muted mb-0">
-            Create a new department for your organization.
-        </p>
+            <small class="text-muted"> Fill in the details below. </small>
+          </div>
 
-    </div>
+          <div class="card-body p-4">
+            <!-- Department Name -->
 
-    <div class="row justify-content-center">
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                Department Name
+                <span class="text-danger">*</span>
+              </label>
 
-        <div class="col-lg-8">
+              <input
+                formControlName="name"
+                type="text"
+                class="form-control"
+                placeholder="Enter department name"
+              />
 
-            <div class="card shadow-sm border-0">
-
-                <div class="card-header bg-white py-4">
-
-                    <h4 class="mb-1 fw-bold">
-
-                        Department Information
-
-                    </h4>
-
-                    <small class="text-muted">
-
-                        Fill in the details below.
-
-                    </small>
-
-                </div>
-
-                <div class="card-body p-4">
-
-                    <form>
-
-                        <!-- Department Name -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label fw-semibold">
-
-                                Department Name
-                                <span class="text-danger">*</span>
-
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter department name">
-
-                        </div>
-
-                        <!-- Description -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label fw-semibold">
-
-                                Description
-
-                            </label>
-
-                            <textarea
-                                rows="5"
-                                class="form-control"
-                                placeholder="Enter department description"></textarea>
-
-                        </div>
-
-                        <!-- Status -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label fw-semibold">
-
-                                Status
-
-                            </label>
-
-                            <select class="form-select">
-
-                                <option>Active</option>
-
-                                <option>Inactive</option>
-
-                            </select>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <div class="card-footer bg-white py-3">
-
-                    <div class="d-flex justify-content-end gap-2">
-
-                        <button class="btn btn-outline-secondary">
-
-                            <i class="bi bi-arrow-left me-2"></i>
-
-                            Cancel
-
-                        </button>
-
-                        <button class="btn btn-outline-warning">
-
-                            <i class="bi bi-arrow-clockwise me-2"></i>
-
-                            Reset
-
-                        </button>
-
-                        <button class="btn btn-primary">
-
-                            <i class="bi bi-check-circle me-2"></i>
-
-                            Save Department
-
-                        </button>
-
-                    </div>
-
-                </div>
-
+              <app-form-validation [control]="f['name']" label="name"></app-form-validation>
             </div>
 
-        </div>
+            <!-- Description -->
 
+            <div class="mb-4">
+              <label class="form-label fw-semibold"> Description </label>
+
+              <textarea
+                formControlName="description"
+                rows="5"
+                class="form-control"
+                placeholder="Enter department description"
+              ></textarea>
+              <app-form-validation
+                [control]="f['description']"
+                label="description"
+              ></app-form-validation>
+            </div>
+
+            <!-- Status -->
+
+            <!-- <div class="mb-4">
+              <label class="form-label fw-semibold"> Status </label>
+
+              <select class="form-select">
+                <option>Active</option>
+
+                <option>Inactive</option>
+              </select>
+            </div> -->
+          </div>
+
+          <div class="card-footer bg-white py-3">
+            <div class="d-flex justify-content-end gap-2">
+              <button routerLink="/admin/department/view" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-2"></i>
+
+                Cancel
+              </button>
+
+              <button (click)="deptFrom.reset()" class="btn btn-outline-warning">
+                <i class="bi bi-arrow-clockwise me-2"></i>
+
+                Reset
+              </button>
+
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle me-2"></i>
+
+                {{ deptId() ? 'Update' : 'Add' }} Department
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-
+  </div>
 </div>

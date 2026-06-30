@@ -1,5 +1,6 @@
 import { loginController, registerController } from "./auth.controller.js";
-import { departmentAddController, departmentDeleteController, departmentEditController, departmentViewController } from "./department.controller.js";
+import { departmentAddController, departmentDeleteController, departmentEditController, departmentViewByIdController, departmentViewController } from "./department.controller.js";
+import { userAddController, userDeleteCotnroller, userEditController, userViewByIdController, userViewController } from "./user.controller.js";
 
 export {
     registerController,
@@ -7,5 +8,11 @@ export {
     departmentAddController,
     departmentEditController,
     departmentDeleteController,
-    departmentViewController
+    departmentViewController,
+    departmentViewByIdController,
+    userViewController,
+    userAddController,
+    userDeleteCotnroller,
+    userViewByIdController,
+    userEditController
 }

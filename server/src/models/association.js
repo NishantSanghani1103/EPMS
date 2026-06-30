@@ -1,10 +1,14 @@
 import { departmentModel, userModel } from "./index.js";
 
-userModel.hasMany(departmentModel, {
+departmentModel.hasMany(userModel, {
+    as: "users",
+    foreignKey: "departmentId",
+});
+
+userModel.belongsTo(departmentModel, {
     as: "deparmentId",
-    foreignKey: "userId"
-})
-departmentModel.belongsTo(userModel, {
-    as: "user",
-    foreignKey: "userId"
-})
+    foreignKey: "departmentId",
+});
+
+
+

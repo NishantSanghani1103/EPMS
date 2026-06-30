@@ -22,10 +22,12 @@ export const messages = {
     },
     user: {
         USER_NOT_FOUND: 'User not found',
+        USER_ADDED: "User Added Successfully",
         USER_ALREADY_EXIST: 'User already exist',
         USER_ACCOUNT_DISABLE: 'Your account is disabled',
         PASSWORD_CHANGED: 'Password change successfully',
         OLD_PASSWORD_INVALID: 'Old password invalid',
+        USER_EDITED: "User Updated Successfully",
         USER_VIEWD: 'User Viwed Successfully',
         USER_DELETED: 'User Deleted Successfully',
         NEW_PASSWORD_INVALID: 'New password is similar to your old password please use different password',

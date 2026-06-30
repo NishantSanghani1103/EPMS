@@ -5,3 +5,4 @@ import * as db from "./src/models/index.js"
 import * as realtion from "./src/models/association.js"
 dotEnv.config()
 connectDb()
+

@@ -1,9 +1,39 @@
 import express from "express"
+import { userAddController, userDeleteCotnroller, userEditController, userViewByIdController, userViewController } from "../controller/index.js"
+import { checkRole, checkToken } from "../middleware/index.js"
+import { userValidation, uuidValidation, validate } from "../validation/index.js"
 export const userRoutes = express.Router()
 
-userRoutes.get("/view", (req, res) => {
-    return res.status(200).json({
-        status: true,
-        message: "User Viewd SuccessFulklyy....!!"
-    })
-})
+
+userRoutes.post("/add",
+    checkToken,
+    checkRole("admin"),
+    userValidation,
+    validate,
+    userAddController)
+
+
+userRoutes.get("/view", checkToken, checkRole("admin"), userViewController)
+
+userRoutes.get("/view/:id",
+    checkToken,
+    checkRole("admin"),
+    uuidValidation,
+    validate,
+    userViewByIdController)
+
+userRoutes.delete("/delete/:id",
+    checkToken,
+    checkRole("admin"),
+    uuidValidation,
+    validate,
+    userDeleteCotnroller)
+
+userRoutes.put("/edit/:id",
+    uuidValidation,
+    userValidation,
+    validate,
+    checkToken,
+    checkRole("admin"),
+    userEditController
+)

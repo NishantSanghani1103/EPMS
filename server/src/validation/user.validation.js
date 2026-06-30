@@ -41,7 +41,8 @@ export const userValidation = [
         .withMessage("Invalid role"),
 
     body("departmentId")
-        .optional({ nullable: true })
+        .notEmpty()
+        .withMessage("Department Is Required")
         .isUUID()
         .withMessage("Department ID must be a valid UUID"),
 

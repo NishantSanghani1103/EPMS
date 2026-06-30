@@ -94,14 +94,14 @@ export class ApiService {
     } catch (error: any) {
       const fieldErrors = error.error;
       // console.log(fieldErrors);
-      if (fieldErrors?.errors) {
-        this.toast.error(fieldErrors?.errors);
+      if (fieldErrors?.error) {
+        this.toast.error(fieldErrors?.error);
         throw error;
       }
-      console.log(fieldErrors.message );
+      console.log(fieldErrors );
      
       
-      this.toast.error(fieldErrors.message || 'Netwok Error');
+      this.toast.error(fieldErrors.message  || 'Netwok Error');
 
       throw {
         message: fieldErrors.message,
@@ -109,7 +109,7 @@ export class ApiService {
         status: false,
       };
 
-      throw error;
+
     } finally {
       if (mergedOption.showLoader) {
         this.loader.hide();

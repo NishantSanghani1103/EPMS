@@ -1,0 +1,27 @@
+.card {
+    border-radius: 15px;
+}
+
+.form-control,
+.form-select {
+    height: 48px;
+    border-radius: 10px;
+}
+
+textarea.form-control {
+    height: auto;
+    resize: vertical;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-footer {
+    padding: 20px;
+}
+
+.btn {
+    min-width: 130px;
+}

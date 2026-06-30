@@ -8,6 +8,9 @@ import { authGuard } from './core/guard/auth-guard';
 import { ManagerLayout } from './features/manager/manager-layout/manager-layout';
 import { UserView } from './features/admin/user/user-view/user-view';
 import { UserAdd } from './features/admin/user/user-add/user-add';
+import { Unauthorized } from './shared/compoments/unauthorized/unauthorized';
+import { ProjectView } from './features/admin/project/project-view/project-view';
+import { ProjectAdd } from './features/admin/project/project-add/project-add';
 
 export const routes: Routes = [
   {
@@ -18,6 +21,10 @@ export const routes: Routes = [
   {
     path: '',
     component: Login,
+  },
+  {
+    path: 'unauthorized',
+    component: Unauthorized,
   },
 
   // for the admin
@@ -42,6 +49,10 @@ export const routes: Routes = [
             component: DepartmentAdd,
           },
           {
+            path: 'edit/:id',
+            component: DepartmentAdd,
+          },
+          {
             path: 'view',
             component: DepartmentView,
           },
@@ -55,8 +66,25 @@ export const routes: Routes = [
             component: UserAdd,
           },
           {
+            path: 'edit/:id',
+            component: UserAdd,
+          },
+          {
             path: 'view',
             component: UserView,
+          },
+        ],
+      },
+      {
+        path: 'project',
+        children: [
+          {
+            path: 'add',
+            component: ProjectAdd,
+          },
+          {
+            path: 'view',
+            component: ProjectView,
           },
         ],
       },
