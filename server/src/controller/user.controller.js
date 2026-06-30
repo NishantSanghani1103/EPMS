@@ -4,7 +4,7 @@ import { response } from "../utils/index.js"
 
 export const userViewController = async (req, res) => {
     try {
-        const data = await userViewService()
+        const data = await userViewService(req.query)
 
         return response(res, {
             status: true,
@@ -109,7 +109,7 @@ export const userEditController = async (req, res) => {
         const { id } = req.params
         const data = await userEditService(id, req.body)
         console.log(data);
-        
+
         if (!data.status) {
             return response(res, {
                 status: data.status,

@@ -29,7 +29,13 @@ export class AuthService {
       this.router.navigate(['/admin/dashboard']);
     }
     if (res.data?.role === 'manager') {
-      this.router.navigate(['/manager'])
+      this.router.navigate(['/manager']);
+    }
+  }
+  userLogOut() {
+    if (confirm('Are You Want To LogOut ? ')) {
+      localStorage.clear();
+      this.router.navigate(['/']);
     }
   }
 }

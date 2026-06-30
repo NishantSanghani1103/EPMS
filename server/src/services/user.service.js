@@ -48,15 +48,22 @@ export const userAddService = async (data) => {
 }
 
 
-export const userViewService = async () => {
+export const userViewService = async (paramsData) => {
     try {
+        const { type } = paramsData
+        console.log(paramsData);
+        const whereCondition = {}
+
+        if (type) {
+            whereCondition.role = type;
+        } else {
+            whereCondition.role = {
+                [Op.not]: "admin"
+            };
+        }
         const data = await userModel.findAll(
             {
-                where: {
-                    role: {
-                        [Op.not]: "admin"
-                    }
-                },
+                where: whereCondition,
                 include: [
                     {
                         model: departmentModel,

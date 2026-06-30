@@ -71,5 +71,8 @@ export const messages = {
         DEPT_NOT_FOUND: "Department Not Found",
         DEPT_DELETED: "Department Deleted Successfully",
         DEPT_UPDATED: "Department Updated Successfully"
+    },
+    project:{
+        PROJECT_ADDED:"Project Added Successfully"
     }
 };
