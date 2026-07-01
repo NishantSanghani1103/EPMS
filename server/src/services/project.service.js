@@ -88,3 +88,27 @@ export const projectViewByIdService = async (managerId) => {
         throw error
     }
 }
+
+
+export const projectSingleViewService = async (id) => {
+    try {
+        const data = await projectModel.findByPk(id, {
+            include: [
+                {
+                    model: userModel,
+                    as: "manager",
+                    attributes: ["firstName", "lastName"]
+                },
+                {
+                    model: departmentModel,
+                    as: "department",
+                    attributes: ["name"]
+                }
+            ]
+        })
+
+        return data
+    } catch (error) {
+        throw error
+    }
+}

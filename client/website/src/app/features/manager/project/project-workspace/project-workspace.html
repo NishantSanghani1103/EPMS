@@ -17,30 +17,20 @@
           </div>
 
           <div>
-            <h2 class="mb-1 fw-bold">ERP Management System</h2>
-            <p class="mb-0">Enterprise Resource Planning System for company operations.</p>
+            <h2 class="mb-1 fw-bold">{{ projectData()?.name }}</h2>
+            <p class="mb-0">{{ projectData()?.description }}</p>
           </div>
         </div>
       </div>
 
       <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-        <span class="badge bg-success px-4 py-2"> Active </span>
+        <span class="badge bg-success px-4 py-2 text-capitalize">
+          {{ projectData()?.status }}
+        </span>
       </div>
     </div>
 
     <!-- Progress -->
-
-    <div class="mt-4">
-      <div class="d-flex justify-content-between mb-2">
-        <strong>Project Progress</strong>
-
-        <strong>76%</strong>
-      </div>
-
-      <div class="progress">
-        <div class="progress-bar bg-warning" style="width: 76%"></div>
-      </div>
-    </div>
 
     <!-- Information -->
 
@@ -51,7 +41,7 @@
 
           <small>Manager</small>
 
-          <h6>John Doe</h6>
+          <h6>{{ projectData()?.manager?.firstName }}</h6>
         </div>
       </div>
 
@@ -61,7 +51,7 @@
 
           <small>Department</small>
 
-          <h6>IT</h6>
+          <h6 class="text-capitalize">{{ projectData()?.department?.name }}</h6>
         </div>
       </div>
 
@@ -91,7 +81,7 @@
 
           <small>Start Date</small>
 
-          <h6>01 Jan 2026</h6>
+          <h6>{{ projectData()?.startDate | date }}</h6>
         </div>
       </div>
 
@@ -101,7 +91,7 @@
 
           <small>Due Date</small>
 
-          <h6>30 Jun 2026</h6>
+          <h6>{{ projectData()?.endDate | date }}</h6>
         </div>
       </div>
     </div>

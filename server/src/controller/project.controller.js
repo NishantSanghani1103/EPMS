@@ -1,5 +1,5 @@
 import { messages } from "../messages/index.js"
-import { projectAddService, projectViewByIdService, projectViewService } from "../services/project.service.js"
+import { projectAddService, projectSingleViewService, projectViewByIdService, projectViewService } from "../services/project.service.js"
 import { response } from "../utils/index.js"
 
 export const projectAddController = async (req, res) => {
@@ -67,6 +67,27 @@ export const projectViewByIdController = async (req, res) => {
             statusCode: 200,
             message: messages.project.PROJECT_VIEWD,
             data: data.dataRes
+        })
+    } catch (error) {
+        return response(res, {
+            status: false,
+            statusCode: 500,
+            message: error.message
+        })
+    }
+}
+
+export const projectSingleViewController = async (req, res) => {
+    try {
+        const { id } = req.params
+        const data = await projectSingleViewService(id)
+
+        
+        return response(res, {
+            status: true,
+            statusCode: 200,
+            message: messages.project.PROJECT_VIEWD,
+            data
         })
     } catch (error) {
         return response(res, {

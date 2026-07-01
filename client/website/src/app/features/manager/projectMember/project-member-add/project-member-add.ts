@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './project-member-add.html',
   styleUrl: './project-member-add.scss',
 })
-export class ProjectMemberAdd {}
+export class ProjectMemberAdd {
+  ngOnInit() {
+    this.getProjectById();
+  }
+
+  async getProjectById() {
+    
+  }
+}
