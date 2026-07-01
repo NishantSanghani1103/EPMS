@@ -72,7 +72,14 @@ export const messages = {
         DEPT_DELETED: "Department Deleted Successfully",
         DEPT_UPDATED: "Department Updated Successfully"
     },
-    project:{
-        PROJECT_ADDED:"Project Added Successfully"
+    project: {
+        PROJECT_ADDED: "Project Added Successfully",
+        PROJECT_VIEWD: "Project Viewd Successfully",
+        PROJECT_NOT_FOUND: "Project Not Found"
+    },
+    projectMember: {
+        PROJECT_MEMBER_VIEWD:"Project Member Viewd Successfully",
+        PROJECT_MEMBER_ADDED: "Employee Added For Project"
     }
+
 };

@@ -11,6 +11,12 @@ import { UserAdd } from './features/admin/user/user-add/user-add';
 import { Unauthorized } from './shared/compoments/unauthorized/unauthorized';
 import { ProjectView } from './features/admin/project/project-view/project-view';
 import { ProjectAdd } from './features/admin/project/project-add/project-add';
+import { ManagerDashboard } from './features/manager/manager-dashboard/manager-dashboard';
+import { ManagerProjectListing } from './features/manager/project/manager-project-listing/manager-project-listing';
+import { TaskCreate } from './features/manager/task-create/task-create';
+import { ProjectMemberView } from './features/manager/projectMember/project-member-view/project-member-view';
+import { ProjectMemberAdd } from './features/manager/projectMember/project-member-add/project-member-add';
+import { ProjectWorkspace } from './features/manager/project/project-workspace/project-workspace';
 
 export const routes: Routes = [
   {
@@ -100,5 +106,44 @@ export const routes: Routes = [
     data: {
       role: ['manager'],
     },
+    children: [
+      {
+        path: 'dashboard',
+        component: ManagerDashboard,
+      },
+      {
+        path: 'myProject',
+        component: ManagerProjectListing,
+      },
+      {
+        path: 'project-workSpace/:projectId',
+        component: ProjectWorkspace,
+        children: [
+          {
+            path: 'member',
+            children: [
+              {
+                path: 'add',
+                component: ProjectMemberAdd,
+              },
+              {
+                path: 'view',
+                component: ProjectMemberView,
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        path: 'task',
+        children: [
+          {
+            path: 'add',
+            component: TaskCreate,
+          },
+        ],
+      },
+    ],
   },
 ];

@@ -1,5 +1,6 @@
 import { validate } from "./common.validation.js";
 import { departmentValidation } from "./department.validation.js";
+import { projectValidation } from "./project.validation.js";
 import { userLoginValidation, userValidation } from "./user.validation.js";
 import { uuidValidation } from "./uuid.validation.js";
 
@@ -8,5 +9,6 @@ export {
     userValidation,
     userLoginValidation,
     departmentValidation,
-    uuidValidation
+    uuidValidation,
+    projectValidation
 }

@@ -1,0 +1,221 @@
+<div class="container-fluid py-4">
+  <!-- Header -->
+  <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Good Morning, John 👋</h2>
+
+      <p class="text-muted mb-0">Here's an overview of your assigned projects and team progress.</p>
+    </div>
+
+    <button class="btn btn-primary px-4">
+      <i class="bi bi-plus-circle me-2"></i>
+
+      Create Task
+    </button>
+  </div>
+
+  <!-- Statistics -->
+
+  <div class="row g-4 mb-4">
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card bg-primary-subtle">
+        <div class="icon bg-primary text-white">
+          <i class="bi bi-kanban-fill"></i>
+        </div>
+
+        <div>
+          <small class="text-muted"> Assigned Projects </small>
+
+          <h3>08</h3>
+
+          <span class="text-success"> +2 This Month </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card bg-success-subtle">
+        <div class="icon bg-success text-white">
+          <i class="bi bi-list-task"></i>
+        </div>
+
+        <div>
+          <small class="text-muted"> Active Tasks </small>
+
+          <h3>43</h3>
+
+          <span class="text-primary"> 18 In Progress </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card bg-warning-subtle">
+        <div class="icon bg-warning text-white">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+
+        <div>
+          <small class="text-muted"> Completed </small>
+
+          <h3>126</h3>
+
+          <span class="text-success"> 94% </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card bg-danger-subtle">
+        <div class="icon bg-danger text-white">
+          <i class="bi bi-exclamation-circle-fill"></i>
+        </div>
+
+        <div>
+          <small class="text-muted"> Overdue </small>
+
+          <h3>05</h3>
+
+          <span class="text-danger"> Needs Attention </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects & Activity -->
+
+  <div class="row g-4 mb-4">
+    <!-- Projects -->
+
+    <div class="col-lg-8">
+      <div class="dashboard-card">
+        <div class="card-header-custom">
+          <h5>My Projects</h5>
+
+          <a href="#">View All</a>
+        </div>
+
+        @for (item of projectData(); track item.id) {
+          <div class="project-item">
+            <div>
+              <h6>{{ item.name }}</h6>
+
+              <small class="text-muted"> {{ item.department.name }} Department </small>
+            </div>
+
+            <div class="text-end">
+              <span
+                [ngClass]="{
+                  'bg-success': item.status == 'completed',
+                  'bg-warning text-dark': item.status == 'planned',
+                  'bg-primary':item.status==='in_progress'
+                }"
+                class="badge text-capitalize"
+              >
+                {{ item.status }}
+              </span>
+
+              <!-- <div class="progress mt-4">
+                <div class="progress-bar bg-success" style="width: 75%"></div>
+              </div> -->
+            </div>
+          </div>
+        }
+
+        <!-- <div class="project-item">
+          <div>
+            <h6>CRM Portal</h6>
+
+            <small class="text-muted"> Sales Department </small>
+          </div>
+
+          <div class="text-end">
+            <span class="badge bg-warning text-dark"> Planning </span>
+
+            <div class="progress mt-2">
+              <div class="progress-bar bg-warning" style="width: 35%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <h6>Employee Management</h6>
+
+            <small class="text-muted"> HR Department </small>
+          </div>
+
+          <div class="text-end">
+            <span class="badge bg-primary"> In Progress </span>
+
+            <div class="progress mt-2">
+              <div class="progress-bar bg-primary" style="width: 60%"></div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Activity -->
+
+    <div class="col-lg-4">
+      <div class="dashboard-card">
+        <div class="card-header-custom">
+          <h5>Recent Activity</h5>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon bg-primary">
+            <i class="bi bi-person-check-fill"></i>
+          </div>
+
+          <div>
+            <strong>Task Assigned</strong>
+
+            <p class="mb-0 text-muted">John assigned Login Module.</p>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon bg-success">
+            <i class="bi bi-check2-circle"></i>
+          </div>
+
+          <div>
+            <strong>Task Completed</strong>
+
+            <p class="mb-0 text-muted">API Integration completed.</p>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon bg-danger">
+            <i class="bi bi-clock-history"></i>
+          </div>
+
+          <div>
+            <strong>Deadline Tomorrow</strong>
+
+            <p class="mb-0 text-muted">CRM Dashboard</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Progress -->
+
+  <div class="dashboard-card">
+    <div class="card-header-custom">
+      <h5>Team Progress</h5>
+    </div>
+
+    <div class="chart-placeholder">
+      <i class="bi bi-bar-chart-line-fill"></i>
+
+      <h5>Chart Placeholder</h5>
+
+      <p class="text-muted">Chart.js / ApexCharts Integration Later</p>
+    </div>
+  </div>
+</div>

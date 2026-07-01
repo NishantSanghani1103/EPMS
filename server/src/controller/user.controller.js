@@ -25,7 +25,8 @@ export const userViewController = async (req, res) => {
 export const userAddController = async (req, res) => {
     try {
         const data = await userAddService(req.body)
-
+        console.log(data);
+        
         if (!data.status) {
             return response(res, {
                 status: data.status,

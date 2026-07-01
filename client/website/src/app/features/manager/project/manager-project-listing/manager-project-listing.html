@@ -1,0 +1,178 @@
+<div class="container-fluid py-4">
+  <!-- Header -->
+
+  <div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">My Projects</h2>
+
+      <p class="text-muted mb-0">View and manage your assigned projects.</p>
+    </div>
+
+    <button class="btn btn-primary">
+      <i class="bi bi-plus-circle me-2"></i>
+
+      Create Task
+    </button>
+  </div>
+
+  <!-- Filters -->
+
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-search"></i>
+            </span>
+
+            <input class="form-control" placeholder="Search Project" />
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <select class="form-select">
+            <option>All Status</option>
+
+            <option>Planning</option>
+
+            <option>Active</option>
+
+            <option>Completed</option>
+          </select>
+        </div>
+
+        <div class="col-lg-3">
+          <select class="form-select">
+            <option>All Departments</option>
+
+            <option>IT</option>
+
+            <option>HR</option>
+
+            <option>Finance</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Cards -->
+
+  <div class="row g-4">
+    <!-- Card -->
+    @for (item of projectData(); track item.id) {
+      <div class="col-xl-4 col-md-6">
+        <div class="project-card">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <h5>{{ item.name }}</h5>
+
+              <small class="text-muted"> {{ item.department.name }} Department </small>
+            </div>
+
+            <span class="badge bg-success"> {{ item.status }} </span>
+          </div>
+
+          <p class="project-description">
+            {{ item.description }}
+          </p>
+          <div class="project-info">
+            <div>
+              <i class="bi bi-person-fill"></i>
+              John Doe
+            </div>
+
+            <div>
+              <i class="bi bi-people-fill"></i>
+
+              8 Members
+            </div>
+          </div>
+
+          <div class="project-info">
+            <div>
+              <i class="bi bi-calendar-event"></i>
+
+              {{ item.startDate | date }}
+            </div>
+
+            <div>
+              <i class="bi bi-list-task"></i>
+
+              25 Tasks
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button   [routerLink]="['/manager/project-workSpace', item.id]" class="btn btn-primary w-100">
+              View Project
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Card -->
+    <!-- 
+    <div class="col-xl-4 col-md-6">
+      <div class="project-card">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <h5>CRM Portal</h5>
+
+            <small class="text-muted"> Sales Department </small>
+          </div>
+
+          <span class="badge bg-warning text-dark"> Planning </span>
+        </div>
+
+        <p class="project-description">Customer Relationship Management Portal.</p>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-2">
+            <small>Progress</small>
+
+            <small>35%</small>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-warning" style="width: 35%"></div>
+          </div>
+        </div>
+
+        <div class="project-info">
+          <div>
+            <i class="bi bi-person-fill"></i>
+
+            Sarah Smith
+          </div>
+
+          <div>
+            <i class="bi bi-people-fill"></i>
+
+            5 Members
+          </div>
+        </div>
+
+        <div class="project-info">
+          <div>
+            <i class="bi bi-calendar-event"></i>
+
+            15 Jul 2026
+          </div>
+
+          <div>
+            <i class="bi bi-list-task"></i>
+
+            18 Tasks
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-primary w-100">View Project</button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

@@ -8,73 +8,134 @@
   <div class="row justify-content-center">
     <div class="col-lg-9">
       <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
-          <div class="row g-4">
-            <div class="col-md-6">
-              <label class="form-label"> Project Name </label>
+        <form (submit)="projectAdd()" [formGroup]="projectAddForm">
+          <div class="card-body p-4">
+            <div class="row g-4">
+              <!-- Project Name -->
+              <div class="col-md-6">
+                <label class="form-label"> Project Name </label>
 
-              <input class="form-control" placeholder="ERP System" />
-            </div>
+                <input formControlName="name" class="form-control" placeholder="ERP System" />
 
-            <div class="col-md-6">
-              <label class="form-label"> Department </label>
+                <app-form-validation
+                  [control]="f['name']"
+                  label="Project Name"
+                ></app-form-validation>
+              </div>
 
-              <select class="form-select">
-                @for (item of deptData(); track item.id) {
-                  <option [value]="item.id">{{ item.name }}</option>
-                }
-              </select>
-            </div>
+              <!-- Department -->
+              <div class="col-md-6">
+                <label class="form-label"> Department </label>
 
-            <div class="col-12">
-              <label class="form-label"> Description </label>
+                <select class="form-select" formControlName="departmentId">
+                  <option value="">Select Department</option>
 
-              <textarea rows="5" class="form-control" placeholder="Project Description"></textarea>
-            </div>
+                  @for (item of deptData(); track item.id) {
+                    <option [value]="item.id">{{ item.name }}</option>
+                  }
+                </select>
 
-            <div class="col-md-6">
-              <label class="form-label"> Project Manager </label>
+                <app-form-validation
+                  [control]="f['departmentId']"
+                  label="Department"
+                ></app-form-validation>
+              </div>
 
-              <select class="form-select">
-                @for (item of userData(); track item.id) {
-                  <option>{{ `${item.firstName}  ${item.lastName}` }}</option>
-                }
-              </select>
-            </div>
+              <!-- Description -->
+              <div class="col-12">
+                <label class="form-label"> Description </label>
 
-            <div class="col-md-6">
-              <label class="form-label"> Status </label>
+                <textarea
+                  rows="5"
+                  class="form-control"
+                  placeholder="Project Description"
+                  formControlName="description"
+                ></textarea>
 
-              <select class="form-select">
-                <option>Planning</option>
+                <app-form-validation
+                  [control]="f['description']"
+                  label="Description"
+                ></app-form-validation>
+              </div>
 
-                <option>Active</option>
+              <!-- Project Manager -->
+              <div class="col-md-6">
+                <label class="form-label"> Project Manager </label>
 
-                <option>Completed</option>
-              </select>
-            </div>
+                <select class="form-select" formControlName="managerId">
+                  <option value="">Select Manager</option>
 
-            <div class="col-md-6">
-              <label class="form-label"> Start Date </label>
+                  @for (item of userData(); track item.id) {
+                    <option [value]="item.id">
+                      {{ `${item.firstName} ${item.lastName}` }}
+                    </option>
+                  }
+                </select>
 
-              <input type="date" class="form-control" />
-            </div>
+                <app-form-validation
+                  [control]="f['managerId']"
+                  label="Project Manager"
+                ></app-form-validation>
+              </div>
 
-            <div class="col-md-6">
-              <label class="form-label"> End Date </label>
+              <!-- Status -->
+              <div class="col-md-6">
+                <label class="form-label"> Status </label>
 
-              <input type="date" class="form-control" />
+                <select class="form-select" formControlName="status">
+                  <option selected value="planned">Planned</option>
+
+                  <option value="in_progress">In Progress</option>
+
+                  <option value="completed">Completed</option>
+
+                  <option value="on_hold">On Hold</option>
+
+                  <option value="cancelled">Cancelled</option>
+                </select>
+
+                <app-form-validation [control]="f['status']" label="Status"></app-form-validation>
+              </div>
+
+              <!-- Start Date -->
+              <div class="col-md-6">
+                <label class="form-label"> Start Date </label>
+
+                <input type="date" class="form-control" formControlName="startDate" />
+
+                <app-form-validation
+                  [control]="f['startDate']"
+                  label="Start Date"
+                ></app-form-validation>
+              </div>
+
+              <!-- End Date -->
+              <div class="col-md-6">
+                <label class="form-label"> End Date </label>
+
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="endDate"
+                  [min]="projectAddForm.get('startDate')?.value"
+                />
+
+                <app-form-validation
+                  [control]="f['endDate']"
+                  label="End Date"
+                ></app-form-validation>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="card-footer bg-white d-flex justify-content-end gap-2">
-          <button class="btn btn-outline-secondary">Cancel</button>
+          <div class="card-footer bg-white d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-outline-secondary">Cancel</button>
 
-          <button class="btn btn-outline-warning">Reset</button>
+            <button type="reset" class="btn btn-outline-warning">Reset</button>
 
-          <button class="btn btn-primary">Save Project</button>
-        </div>
+            <button type="submit" [disabled]="projectAddForm.invalid" class="btn btn-primary">Save Project</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

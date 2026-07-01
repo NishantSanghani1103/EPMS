@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-manager-layout',
-  imports: [],
+  imports: [RouterOutlet,RouterLink],
   templateUrl: './manager-layout.html',
   styleUrl: './manager-layout.scss',
 })
-export class ManagerLayout {}
+export class ManagerLayout {
+  router=inject(Router)
+}

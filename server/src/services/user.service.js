@@ -27,14 +27,19 @@ export const userAddService = async (data) => {
                 message: messages.dept.DEPT_NOT_FOUND
             }
         }
-        if (password !== confirmPassword) {
-            return {
-                status: false,
-                statusCode: 401,
-                message: messages.general.VALIDATION_ERROR
-            }
-        }
-        const res = await userModel.create(data)
+
+
+        const encryptedPassword = await hashedPassword(password)
+
+
+        const res = await userModel.create({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            password: encryptedPassword,
+            role: data.role,
+            departmentId: data.departmentId
+        })
 
         return {
             status: true,
@@ -155,7 +160,14 @@ export const userEditService = async (id, data) => {
         }
 
         const encrptedPassword = await hashedPassword(password)
-        const res = await userModel.update({ ...data, password: encrptedPassword }, {
+        const res = await userModel.update({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            password: encrptedPassword,
+            role: data.role,
+            departmentId: data.departmentId
+        }, {
             where: {
                 id
             }

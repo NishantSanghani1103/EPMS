@@ -13,7 +13,7 @@ userRoutes.post("/add",
     userAddController)
 
 
-userRoutes.get("/view", checkToken, checkRole("admin"), userViewController)
+userRoutes.get("/view", checkToken, checkRole("admin","manager"), userViewController)
 
 userRoutes.get("/view/:id",
     checkToken,

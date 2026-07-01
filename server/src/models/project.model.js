@@ -58,12 +58,7 @@ export const projectModel = sequelize.define("project", {
         ),
         allowNull: false,
         defaultValue: "planned",
-    },
-
-    createdBy: {
-        type: DataTypes.UUID,
-        allowNull: false,
-    },
+    }
 },
     {
         timestamps: true,

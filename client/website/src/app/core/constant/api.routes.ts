@@ -16,4 +16,9 @@ export const API_ROUTES = {
     getById: (id: string | null) => `user/view/${id}`,
     userEdit: (id: string | null) => `user/edit/${id}`,
   },
+  project: {
+    projectView: 'project/view',
+    projectAdd: 'project/add',
+    getByManger: 'project/viewByManager',
+  },
 };

@@ -1,1 +1,177 @@
-<p>manager-layout works!</p>
+<div class="manager-layout">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <i class="bi bi-kanban-fill"></i>
+
+            <span>EPMS</span>
+
+        </div>
+
+        <!-- Navigation -->
+
+        <ul>
+
+            <li [class.active]="router.url.startsWith('/manager/dashboard')">
+
+                <a routerLink="/manager/dashboard">
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <li [class.active]="router.url.startsWith('/manager/myProject')">
+
+                <a routerLink="/manager/myProject">
+
+                    <i class="bi bi-folder-fill"></i>
+
+                    My Projects
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="bi bi-list-task"></i>
+
+                    Tasks
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    Team Members
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                    Team Progress
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                    Notifications
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <!-- Bottom -->
+
+        <div class="sidebar-bottom">
+
+            <!-- <a href="#">
+
+                <i class="bi bi-person-circle"></i>
+
+                Profile
+
+            </a> -->
+
+            <!-- <a href="#">
+
+                <i class="bi bi-gear-fill"></i>
+
+                Settings
+
+            </a> -->
+
+            <a href="#" class="logout">
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <!-- Navbar -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h5 class="mb-0">
+
+                    Project Manager
+
+                </h5>
+
+            </div>
+
+            <div class="user">
+
+                <i class="bi bi-bell fs-5"></i>
+
+                <img
+                    src="https://i.pravatar.cc/45"
+                    class="avatar">
+
+                <div>
+
+                    <strong>John Doe</strong>
+
+                    <br>
+
+                    <small>Project Manager</small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Page -->
+
+        <main class="content">
+
+            <router-outlet></router-outlet>
+
+        </main>
+
+    </div>
+
+</div>
