@@ -1,5 +1,5 @@
 import { messages } from "../messages/index.js"
-import { departmentModel, projectModel, userModel } from "../models/index.js"
+import { departmentModel, projectMemberModel, projectModel, userModel } from "../models/index.js"
 
 export const projectAddService = async (data) => {
     try {
@@ -48,6 +48,10 @@ export const projectViewService = async () => {
                     model: departmentModel,
                     as: "department",
                     attributes: ["name"]
+                },
+                {
+                    model:projectMemberModel,
+                    as:"projectMembers"
                 }
             ],
             order: [["createdAt", "DESC"]]
@@ -103,6 +107,10 @@ export const projectSingleViewService = async (id) => {
                     model: departmentModel,
                     as: "department",
                     attributes: ["name"]
+                },
+                {
+                    model:projectMemberModel,
+                    as:"projectMembers"
                 }
             ]
         })

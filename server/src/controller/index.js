@@ -1,7 +1,8 @@
 import { loginController, registerController } from "./auth.controller.js";
 import { departmentAddController, departmentDeleteController, departmentEditController, departmentViewByIdController, departmentViewController } from "./department.controller.js";
 import { projectAddController, projectSingleViewController, projectViewByIdController, projectViewController } from "./project.controller.js";
-import { projectMemberAddCotnroller, projectMemberViewController } from "./projectMember.controller.js";
+import { projectMemberAddCotnroller, projectMemberViewByProjectIdController, projectMemberViewController } from "./projectMember.controller.js";
+import { taskAddController } from "./task.controller.js";
 import { userAddController, userDeleteCotnroller, userEditController, userViewByIdController, userViewController } from "./user.controller.js";
 
 export {
@@ -22,5 +23,7 @@ export {
     projectViewByIdController,
     projectMemberAddCotnroller,
     projectMemberViewController,
-    projectSingleViewController
+    projectSingleViewController,
+    projectMemberViewByProjectIdController,
+    taskAddController
 }

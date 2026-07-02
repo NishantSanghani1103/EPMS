@@ -2,6 +2,7 @@ import { authRoutes } from "./auth.routes.js";
 import { deparmentRoutes } from "./department.routes.js";
 import { projectRoutes } from "./project.routes.js";
 import { projectMemberRoutes } from "./projectMember.routes.js";
+import { taskRoutes } from "./task.routes.js";
 import { userRoutes } from "./user.routes.js";
 
 export{
@@ -9,5 +10,6 @@ export{
     authRoutes,
     deparmentRoutes,
     projectRoutes,
-    projectMemberRoutes
+    projectMemberRoutes,
+    taskRoutes
 }

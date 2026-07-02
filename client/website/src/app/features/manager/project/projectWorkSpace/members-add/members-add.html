@@ -1,285 +1,171 @@
 <div class="container-fluid py-4">
+  <!-- Page Header -->
 
-    <!-- Page Header -->
+  <div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h3 class="fw-bold mb-1">Add Project Member</h3>
 
-    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+      <p class="text-muted mb-0">Add an existing employee to the current project.</p>
+    </div>
 
-        <div>
+    <button class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left me-2"></i>
 
-            <h3 class="fw-bold mb-1">
-                Add Project Member
-            </h3>
+      View Member
+    </button>
+  </div>
 
-            <p class="text-muted mb-0">
-                Add an existing employee to the current project.
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <form (submit)="projectMemberSave()" [formGroup]="memberAddForm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Member Information</h5>
+          </div>
+
+          <div class="card-body">
+            <!-- Employee -->
+
+            <div class="mb-4">
+              <label class="form-label">
+                Employee
+                <span class="text-danger">*</span>
+              </label>
+
+              <select formControlName="userId" (change)="getEmpById($event)" class="form-select">
+                <option selected value="" disabled>Select Employee</option>
+                @for (item of empData(); track item.id) {
+                  <option [value]="item.id">
+                    {{ `${item.firstName} ${item.lastName}` }}
+                  </option>
+                }
+              </select>
+
+              <app-form-validation [control]="f['userId']" label="Employee"></app-form-validation>
+            </div>
+
+            <!-- Department -->
+
+            <div class="mb-4">
+              <label class="form-label"> Department </label>
+
+              <input
+                type="text"
+                class="form-control text-capitalize"
+                placeholder=""
+                [value]="empSingleData()?.deparmentId?.name"
+                readonly
+              />
+            </div>
+
+            <!-- Joining Date -->
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <label class="form-label"> Joining Date </label>
+
+                <input formControlName="joinedAt" type="date" class="form-control" />
+                <app-form-validation
+                  [control]="f['joinedAt']"
+                  label="join date"
+                ></app-form-validation>
+              </div>
+
+              <!-- <div class="col-md-6 mb-4">
+                <label class="form-label"> Member Status </label>
+
+                <select class="form-select">
+                  <option>Active</option>
+
+                  <option>Inactive</option>
+                </select>
+              </div> -->
+            </div>
+
+            <!-- Note -->
+
+            <div class="mb-4">
+              <label class="form-label"> Notes </label>
+
+              <textarea
+                formControlName="notes"
+                rows="4"
+                class="form-control"
+                placeholder="Optional notes..."
+              ></textarea>
+              <app-form-validation [control]="f['notes']" label="notes"></app-form-validation>
+            </div>
+          </div>
+
+          <div class="card-footer bg-white">
+            <div class="d-flex justify-content-end gap-2">
+              <button class="btn btn-outline-secondary">Cancel</button>
+
+              <button class="btn btn-outline-warning">Reset</button>
+
+              <button [disabled]="memberAddForm.invalid" class="btn btn-primary">
+                <i class="bi bi-person-plus-fill me-2"></i>
+
+                Add Member
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Employee Preview -->
+
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body text-center">
+          <img src="https://i.pravatar.cc/120?img=12" class="profile-image mb-3" />
+
+          <h5 class="text-capitalize">
+            {{ `${empSingleData()?.firstName} ${empSingleData()?.lastName} ` }}
+          </h5>
+
+          <p class="text-muted">Software Developer</p>
+
+          <hr />
+
+          <div class="text-start">
+            <p>
+              <strong>Email</strong>
+
+              <br />
+
+              {{ empSingleData()?.email }}
             </p>
 
+            <p class="text-capitalize">
+              <strong>Department</strong>
+
+              <br />
+
+              {{ empSingleData()?.deparmentId?.name }}
+            </p>
+
+            <p>
+              <strong>Phone</strong>
+
+              <br />
+
+              {{ empSingleData()?.phone }}
+            </p>
+
+            <p>
+              <strong>Status</strong>
+
+              <br />
+
+              <span class="badge bg-success text-capitalize">
+                {{ empSingleData()?.status }} Employee
+              </span>
+            </p>
+          </div>
         </div>
-
-        <button class="btn btn-outline-secondary">
-
-            <i class="bi bi-arrow-left me-2"></i>
-
-            Back
-
-        </button>
-
+      </div>
     </div>
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-8">
-
-            <div class="card border-0 shadow-sm">
-
-                <div class="card-header bg-white">
-
-                    <h5 class="mb-0">
-
-                        Member Information
-
-                    </h5>
-
-                </div>
-
-                <div class="card-body">
-
-                    <form>
-
-                        <!-- Employee -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-
-                                Employee
-                                <span class="text-danger">*</span>
-
-                            </label>
-
-                            <select class="form-select">
-
-                                <option>Select Employee</option>
-
-                                <option>Alex Johnson</option>
-
-                                <option>Sarah Smith</option>
-
-                                <option>David Miller</option>
-
-                                <option>Emily Brown</option>
-
-                            </select>
-
-                        </div>
-
-                        <!-- Department -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-
-                                Department
-
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="Information Technology"
-                                readonly>
-
-                        </div>
-
-                        <!-- Designation -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-
-                                Designation
-
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="Software Developer"
-                                readonly>
-
-                        </div>
-
-                        <!-- Joining Date -->
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-
-                                    Joining Date
-
-                                </label>
-
-                                <input
-                                    type="date"
-                                    class="form-control">
-
-                            </div>
-
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-
-                                    Member Status
-
-                                </label>
-
-                                <select class="form-select">
-
-                                    <option>Active</option>
-
-                                    <option>Inactive</option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Note -->
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-
-                                Notes
-
-                            </label>
-
-                            <textarea
-                                rows="4"
-                                class="form-control"
-                                placeholder="Optional notes..."></textarea>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <div class="card-footer bg-white">
-
-                    <div class="d-flex justify-content-end gap-2">
-
-                        <button class="btn btn-outline-secondary">
-
-                            Cancel
-
-                        </button>
-
-                        <button class="btn btn-outline-warning">
-
-                            Reset
-
-                        </button>
-
-                        <button class="btn btn-primary">
-
-                            <i class="bi bi-person-plus-fill me-2"></i>
-
-                            Add Member
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Employee Preview -->
-
-        <div class="col-lg-4">
-
-            <div class="card border-0 shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <img
-                        src="https://i.pravatar.cc/120?img=12"
-                        class="profile-image mb-3">
-
-                    <h5>
-
-                        Alex Johnson
-
-                    </h5>
-
-                    <p class="text-muted">
-
-                        Software Developer
-
-                    </p>
-
-                    <hr>
-
-                    <div class="text-start">
-
-                        <p>
-
-                            <strong>Email</strong>
-
-                            <br>
-
-                            alex@gmail.com
-
-                        </p>
-
-                        <p>
-
-                            <strong>Department</strong>
-
-                            <br>
-
-                            Information Technology
-
-                        </p>
-
-                        <p>
-
-                            <strong>Phone</strong>
-
-                            <br>
-
-                            +91 9876543210
-
-                        </p>
-
-                        <p>
-
-                            <strong>Status</strong>
-
-                            <br>
-
-                            <span class="badge bg-success">
-
-                                Active Employee
-
-                            </span>
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+  </div>
 </div>

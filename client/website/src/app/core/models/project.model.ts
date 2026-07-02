@@ -1,3 +1,6 @@
+import { projectMemberResponse } from "./projectMember.model";
+
+
 export interface ProjectType {
   id: string;
   name: string;
@@ -11,6 +14,7 @@ export interface ProjectType {
   updatedAt: string;
   manager: Manager;
   department: Department;
+  projectMembers:projectMemberResponse[]
 }
 
 export interface Manager {

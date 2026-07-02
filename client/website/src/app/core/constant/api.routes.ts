@@ -22,4 +22,8 @@ export const API_ROUTES = {
     getByManger: 'project/viewByManager',
     getById: (id: string) => `project/view/${id}`,
   },
+  projectMember: {
+    memberAdd: 'project-member/add',
+    getByProject: (projectId: string | undefined | null) => `project-member/view-byProjectId/${projectId}`,
+  },
 };

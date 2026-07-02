@@ -25,8 +25,21 @@ export const projectMemberAddService = async (data) => {
                 message: messages.user.USER_NOT_FOUND
             }
         }
-        console.log(checkUser);
+        // console.log(checkUser);
 
+        const checkProjectMember = await projectMemberModel.findOne({
+            where: {
+                userId,
+                projectId
+            }
+        })
+        if (checkProjectMember) {
+            return {
+                status: false,
+                statusCode: 401,
+                message: messages.projectMember.PROJECT_MEMBER_EXIST
+            }
+        }
         const res = await projectMemberModel.create(data)
 
         return {
@@ -44,18 +57,57 @@ export const projectMemberViewService = async () => {
             include: [
                 {
                     model: userModel,
-                    as:"user",
-                    attributes:["firstName","lastName"]
+                    as: "user",
+                    attributes: ["firstName", "lastName"]
                 },
                 {
-                    model:projectModel,
+                    model: projectModel,
+                    as: "project",
+                    attributes: ["name"]
+                }
+            ]
+        })
+
+        return data
+    } catch (error) {
+        throw error
+    }
+}
+
+export const projectMemberViewByProjectIdService = async (projectId) => {
+    try {
+        const checkProject = await projectModel.findByPk(projectId)
+
+        if (!checkProject) {
+            return {
+                status: false,
+                statusCode: 401,
+                message: messages.project.PROJECT_NOT_FOUND
+            }
+        }
+
+        const res = await projectMemberModel.findAll({
+            where: {
+                projectId
+            },
+            include: [
+                {
+                    model: userModel,
+                    as: "user",
+                    attributes: ["firstName", "lastName", "email", "profileImage", "profileImageUrl","status"]
+                },
+                {
+                    model: projectModel,
                     as:"project",
                     attributes:["name"]
                 }
             ]
         })
 
-        return data
+        return {
+            status: true,
+            res
+        }
     } catch (error) {
         throw error
     }

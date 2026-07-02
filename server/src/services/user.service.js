@@ -87,7 +87,15 @@ export const userViewService = async (paramsData) => {
 
 export const userGetByIdService = async (id) => {
     try {
-        const userData = await userModel.findByPk(id)
+        const userData = await userModel.findByPk(id,{
+            include:[
+                {
+                    model:departmentModel,
+                    as:"deparmentId",
+                    attributes:["name"]
+                }
+            ]
+        })
 
         if (!userData) {
             return {

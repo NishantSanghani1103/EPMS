@@ -1,8 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { ApiService } from '../../../core/service/api.service';
 import { API_ROUTES } from '../../../core/constant/api.routes';
 import { ProjectType } from '../../../core/models/project.model';
 import { userDataResponse } from '../../../core/models/user.model';
+import { ActivatedRoute } from '@angular/router';
+import { projectMemberResponse } from '../../../core/models/projectMember.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-create',
@@ -12,17 +15,38 @@ import { userDataResponse } from '../../../core/models/user.model';
 })
 export class TaskCreate {
   apiService = inject(ApiService);
+  activatedRoutes = inject(ActivatedRoute);
+  fb = inject(FormBuilder);
   projectData = signal<ProjectType[]>([]);
-  empData = signal<userDataResponse[]>([]);
+  empData = signal<projectMemberResponse[]>([]);
+  taskForm!: FormGroup;
+  @Input() projectId!: string | undefined;
   ngOnInit() {
-    this.getProject();
-    this.getEmp();
+    const id = this.activatedRoutes.snapshot.paramMap.get('projectId');
+    console.log(id);
+    console.log(this.projectId);
+    this.getEmp(this.projectId);
+    this.initializeForm();
   }
 
-  async getProject() {
-    const res = await this.apiService.request<ProjectType[]>(
+  initializeForm() {
+    this.taskForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(2)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(200)]],
+      startDate: [''],
+      dueDate: [''],
+      assignedTo: ['', Validators.required],
+      priority: ['medium'],
+      status: ['todo'],
+      estimatedHours: [0],
+      notes: [''],
+    });
+  }
+
+  async getEmp(id: string | undefined) {
+    const res = await this.apiService.request<projectMemberResponse[]>(
       'GET',
-      API_ROUTES.project.getByManger,
+      API_ROUTES.projectMember.getByProject(id),
       null,
       null,
       {
@@ -31,24 +55,6 @@ export class TaskCreate {
       },
     );
     console.log(res.data);
-
-    this.projectData.set(res.data ?? []);
-  }
-
-  async getEmp() {
-    const res = await this.apiService.request<userDataResponse[]>(
-      'GET',
-      API_ROUTES.user.userView,
-      null,
-      {
-        type: 'employee',
-      },
-      {
-        showLoader: true,
-        useToken: true,
-      },
-    );
-    console.log(res);
 
     this.empData.set(res.data ?? []);
   }

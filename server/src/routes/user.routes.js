@@ -17,7 +17,7 @@ userRoutes.get("/view", checkToken, checkRole("admin","manager"), userViewContro
 
 userRoutes.get("/view/:id",
     checkToken,
-    checkRole("admin"),
+    checkRole("admin","manager"),
     uuidValidation,
     validate,
     userViewByIdController)

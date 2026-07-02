@@ -27,7 +27,10 @@ export const projectMemberModel = sequelize.define("projectMember",
                 key: "id"
             }
         },
-
+        notes: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
         joinedAt: {
             type: DataTypes.DATE,
             allowNull: false,
