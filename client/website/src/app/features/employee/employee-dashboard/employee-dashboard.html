@@ -1,0 +1,69 @@
+<div class="container-fluid">
+
+    <!-- Welcome Section -->
+ 
+
+    <!-- Statistics -->
+
+    <div class="row g-4 my-4">
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card bg-primary text-white">
+
+                <i class="bi bi-list-task stat-icon"></i>
+
+                <h3>{{employee()?.task?.length}}</h3>
+
+                <p>Total Tasks</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card bg-warning text-white">
+
+                <i class="bi bi-hourglass-split stat-icon"></i>
+
+                <h3>{{employee()?.task.filter((employee)=>employee.status==='in_progress').length}}</h3>
+
+                <p>In Progress</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card bg-success text-white">
+
+                <i class="bi bi-check-circle stat-icon"></i>
+
+                <h3>{{employee()?.task.filter((employee)=>employee.status==='completed').length}}</h3>
+
+                <p>Completed</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card bg-danger text-white">
+
+                <i class="bi bi-exclamation-circle stat-icon"></i>
+
+                <h3>{{employee()?.task.filter((employee)=>employee.status==='todo').length}}</h3>
+
+                <p>Todo</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+</div>

@@ -5,11 +5,11 @@ import { ProjectType } from '../../../core/models/project.model';
 import { userDataResponse } from '../../../core/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { projectMemberResponse } from '../../../core/models/projectMember.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-create',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './task-create.html',
   styleUrl: './task-create.scss',
 })
@@ -22,9 +22,9 @@ export class TaskCreate {
   taskForm!: FormGroup;
   @Input() projectId!: string | undefined;
   ngOnInit() {
-    const id = this.activatedRoutes.snapshot.paramMap.get('projectId');
-    console.log(id);
-    console.log(this.projectId);
+    // const id = this.activatedRoutes.snapshot.paramMap.get('projectId');
+    // console.log(id);
+    // console.log(this.projectId);
     this.getEmp(this.projectId);
     this.initializeForm();
   }
@@ -43,6 +43,20 @@ export class TaskCreate {
     });
   }
 
+  async taskSave() {
+    const obj = this.taskForm.value;
+    obj.projectId = this.projectId;
+
+    const res = await this.apiService.request('POST', API_ROUTES.task.taskAdd, obj, null, {
+      showLoader: true,
+      useToken: true,
+      showToaster: true,
+    });
+
+    // console.log(res);
+    
+  }
+
   async getEmp(id: string | undefined) {
     const res = await this.apiService.request<projectMemberResponse[]>(
       'GET',
@@ -54,7 +68,7 @@ export class TaskCreate {
         useToken: true,
       },
     );
-    console.log(res.data);
+    // console.log(res.data);
 
     this.empData.set(res.data ?? []);
   }

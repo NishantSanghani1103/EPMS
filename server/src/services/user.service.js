@@ -1,5 +1,5 @@
 import { Op } from "sequelize"
-import { departmentModel, userModel } from "../models/index.js"
+import { departmentModel, projectMemberModel, projectModel, taskModel, userModel } from "../models/index.js"
 import { messages } from "../messages/index.js"
 import { hashedPassword } from "../utils/password.utils.js"
 
@@ -74,6 +74,20 @@ export const userViewService = async (paramsData) => {
                         model: departmentModel,
                         as: "deparmentId",
                         attributes: ["name"]
+                    },
+                    {
+                        model: taskModel,
+                        as: "task"
+                    },
+                    {
+                        model: projectMemberModel,
+                        as: "projectMember",
+                        include: [
+                            {
+                                model: projectModel,
+                                as: "project"
+                            }
+                        ]
                     }
                 ]
             }
@@ -87,12 +101,12 @@ export const userViewService = async (paramsData) => {
 
 export const userGetByIdService = async (id) => {
     try {
-        const userData = await userModel.findByPk(id,{
-            include:[
+        const userData = await userModel.findByPk(id, {
+            include: [
                 {
-                    model:departmentModel,
-                    as:"deparmentId",
-                    attributes:["name"]
+                    model: departmentModel,
+                    as: "deparmentId",
+                    attributes: ["name"]
                 }
             ]
         })
@@ -185,6 +199,70 @@ export const userEditService = async (id, data) => {
             res
         }
 
+    } catch (error) {
+        throw error
+    }
+}
+
+export const userViewByTokenService = async (id) => {
+    try {
+        const res = await userModel.findByPk(id, {
+            include: [
+                {
+                    model: departmentModel,
+                    as: "deparmentId",
+                    attributes: ["name"]
+                },
+                {
+                    model: taskModel,
+                    as: "task"
+                },
+                {
+                    model: projectMemberModel,
+                    as: "projectMember",
+                    include: [
+                        {
+                            model: projectModel,
+                            as: "project"
+                        }
+                    ]
+                }
+            ]
+        })
+
+        return res
+    } catch (error) {
+        throw error
+    }
+}
+
+
+export const userEditByTokenService = async (id, data) => {
+    try {
+        const { password, confirmPassword } = data
+        if (password !== confirmPassword) {
+            return {
+                status: false,
+                statusCode: 401,
+                message: messages.general.VALIDATION_ERROR
+            }
+        }
+        const encrptedPassword = await hashedPassword(password)
+        delete data.confirmPassword
+        const res = await userModel.update({
+            ...data, password: encrptedPassword
+        },
+            {
+                where: {
+                    id
+                }
+            }
+        )
+
+        return {
+            status: true,
+            res
+        }
     } catch (error) {
         throw error
     }

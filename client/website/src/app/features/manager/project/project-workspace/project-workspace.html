@@ -185,7 +185,8 @@
     <app-members-view [projectId]="projectData()?.id"></app-members-view>
   }
   @if (projectDiv() == 3) {
-    <app-task-create [projectId]="projectData()?.id" ></app-task-create>
+    <app-task-view [projectId]="projectData()?.id"></app-task-view>
+    <app-task-create [projectId]="projectData()?.id"></app-task-create>
   }
 
   <router-outlet></router-outlet>

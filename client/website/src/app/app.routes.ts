@@ -17,6 +17,10 @@ import { TaskCreate } from './features/manager/task-create/task-create';
 import { ProjectMemberView } from './features/manager/projectMember/project-member-view/project-member-view';
 import { ProjectMemberAdd } from './features/manager/projectMember/project-member-add/project-member-add';
 import { ProjectWorkspace } from './features/manager/project/project-workspace/project-workspace';
+import { EmployeeLayout } from './features/employee/employee-layout/employee-layout';
+import { EmployeeDashboard } from './features/employee/employee-dashboard/employee-dashboard';
+import { EmpTaskView } from './features/employee/emp-task-view/emp-task-view';
+import { EmpProfile } from './features/employee/emp-profile/emp-profile';
 
 export const routes: Routes = [
   {
@@ -143,6 +147,31 @@ export const routes: Routes = [
             component: TaskCreate,
           },
         ],
+      },
+    ],
+  },
+
+  // for the employee
+
+  {
+    path: 'employee',
+    component: EmployeeLayout,
+    canActivate: [authGuard],
+    data: {
+      role: ['employee'],
+    },
+    children: [
+      {
+        path: 'dashboard',
+        component: EmployeeDashboard,
+      },
+      {
+        path: 'myTask',
+        component: EmpTaskView,
+      },
+      {
+        path: 'profile',
+        component: EmpProfile,
       },
     ],
   },

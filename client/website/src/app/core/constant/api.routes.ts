@@ -15,6 +15,7 @@ export const API_ROUTES = {
     userDelete: (id: string) => `user/delete/${id}`,
     getById: (id: string | null) => `user/view/${id}`,
     userEdit: (id: string | null) => `user/edit/${id}`,
+    getByToken: 'user/viewByToken',
   },
   project: {
     projectView: 'project/view',
@@ -24,6 +25,13 @@ export const API_ROUTES = {
   },
   projectMember: {
     memberAdd: 'project-member/add',
-    getByProject: (projectId: string | undefined | null) => `project-member/view-byProjectId/${projectId}`,
+    getByProject: (projectId: string | undefined | null) =>
+      `project-member/view-byProjectId/${projectId}`,
+  },
+  task: {
+    taskAdd: 'task/add',
+    getByManagerAndProjectId: (projectId: string | undefined) =>
+      `task/viewBy-manager-projectId/${projectId}`,
+    getByToken: 'task/viewByEmp',
   },
 };

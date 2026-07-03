@@ -1,5 +1,5 @@
 import { messages } from "../messages/index.js"
-import { userAddService, userDeleteService, userEditService, userGetByIdService, userViewService } from "../services/index.js"
+import { userAddService, userDeleteService, userEditByTokenService, userEditService, userGetByIdService, userViewByTokenService, userViewService } from "../services/index.js"
 import { response } from "../utils/index.js"
 
 export const userViewController = async (req, res) => {
@@ -26,7 +26,7 @@ export const userAddController = async (req, res) => {
     try {
         const data = await userAddService(req.body)
         console.log(data);
-        
+
         if (!data.status) {
             return response(res, {
                 status: data.status,
@@ -110,6 +110,59 @@ export const userEditController = async (req, res) => {
         const { id } = req.params
         const data = await userEditService(id, req.body)
         console.log(data);
+
+        if (!data.status) {
+            return response(res, {
+                status: data.status,
+                statusCode: data.statusCode,
+                message: data.message
+            })
+        }
+
+        return response(res, {
+            status: true,
+            statusCode: 201,
+            message: messages.user.USER_EDITED,
+            data: data.res
+        })
+    } catch (error) {
+        return response(res, {
+            status: false,
+            statusCode: 500,
+            message: error.message
+        })
+    }
+}
+
+export const userViewByTokenController = async (req, res) => {
+    try {
+        const { id } = req.user
+        const data = await userViewByTokenService(id)
+
+        return response(res, {
+            status: true,
+            statusCode: 200,
+            message: messages.user.USER_VIEWD,
+            data
+        })
+
+    } catch (error) {
+        return response(res, {
+            status: false,
+            statusCode: 500,
+            message: error.message
+        })
+    }
+}
+
+
+export const userEditByTokenController = async (req, res) => {
+    try {
+        const { id } = req.user
+        if (req.files && req.files.profileImage) {
+            req.body.profileImage = req.files.profileImage[0].filename
+        }
+        const data = await userEditByTokenService(id, req.body)
 
         if (!data.status) {
             return response(res, {

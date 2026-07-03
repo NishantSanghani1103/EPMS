@@ -78,12 +78,13 @@ export const messages = {
         PROJECT_NOT_FOUND: "Project Not Found"
     },
     projectMember: {
-        PROJECT_MEMBER_VIEWD:"Project Member Viewd Successfully",
+        PROJECT_MEMBER_VIEWD: "Project Member Viewd Successfully",
         PROJECT_MEMBER_ADDED: "Employee Added For Project",
-        PROJECT_MEMBER_EXIST:"Project Member ALready Exists"
+        PROJECT_MEMBER_EXIST: "Project Member ALready Exists"
     },
-    task:{
-        TASK_ADDED:"Task Created Successfully"
+    task: {
+        TASK_ADDED: "Task Created Successfully",
+        TASK_VIEWD: "Task Viewd Successfully"
     }
 
 };

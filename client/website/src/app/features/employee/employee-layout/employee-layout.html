@@ -1,0 +1,108 @@
+<div class="employee-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <ul>
+
+            <!-- Logo -->
+            <li class="logo-item">
+                <a href="#">
+                    <i class="bi bi-kanban-fill"></i>
+                    <span>EPMS</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a routerLink="/employee/dashboard">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/employee/myTask">
+                    <i class="bi bi-list-task"></i>
+                    <span>My Tasks</span>
+                </a>
+            </li>
+
+
+            <li>
+                <a routerLink="/employee/profile">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- Bottom -->
+        <div class="sidebar-bottom">
+
+            <a style="cursor: pointer;" (click)="authService.userLogOut()" class="logout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+    <div class="main-content">
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div>
+                <h4 class="mb-0 fw-bold">
+                    Employee Dashboard
+                </h4>
+
+                <small class="text-muted">
+                    Welcome back,{{userData()?.firstName}} 👋
+                </small>
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="btn btn-light position-relative">
+
+                    <i class="bi bi-bell fs-5"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+                <img
+                    src="https://i.pravatar.cc/45?img=12"
+                    class="profile-img"
+                    alt="Profile">
+
+                <div>
+                    <strong>{{userData()?.firstName}} {{userData()?.lastName}}</strong>
+
+                    <br>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Content -->
+        <main class="content">
+            <router-outlet [routerOutletData]="userData()" ></router-outlet>
+        </main>
+
+    </div>
+
+</div>

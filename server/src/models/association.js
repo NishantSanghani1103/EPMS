@@ -1,4 +1,4 @@
-import { departmentModel, projectMemberModel, projectModel, userModel } from "./index.js";
+import { departmentModel, projectMemberModel, projectModel, taskModel, userModel } from "./index.js";
 
 departmentModel.hasMany(userModel, {
     as: "users",
@@ -60,3 +60,35 @@ projectMemberModel.belongsTo(projectModel, {
     as: "project",
     foreignKey: "projectId"
 });
+
+
+
+// for the task module
+
+
+
+userModel.hasMany(taskModel, {
+    as: "task",
+    foreignKey: "assignedTo"
+})
+
+taskModel.belongsTo(userModel, {
+    as: "user",
+    foreignKey: "assignedTo"
+})
+
+
+taskModel.belongsTo(userModel, {
+    as: "taskCreated",
+    foreignKey: "createdBy"
+})
+
+projectModel.hasMany(taskModel, {
+    as: "tasks",
+    foreignKey: "projectId"
+})
+
+taskModel.belongsTo(projectModel, {
+    as: "project",
+    foreignKey: "projectId"
+})

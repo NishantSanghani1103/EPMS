@@ -1,0 +1,43 @@
+.card{
+    border-radius:16px;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.form-control,
+.form-select{
+    height:46px;
+    border-radius:10px;
+}
+
+.input-group-text{
+    border-radius:10px 0 0 10px;
+}
+
+.table th,
+.table td{
+    padding:18px;
+    vertical-align:middle;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.badge{
+    padding:8px 14px;
+    font-size:12px;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+.table tbody tr:hover{
+    background:#f8f9fa;
+}

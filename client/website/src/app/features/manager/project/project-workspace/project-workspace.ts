@@ -7,10 +7,20 @@ import { ProjectType } from '../../../../core/models/project.model';
 import { CommonModule, NgClass } from '@angular/common';
 import { MembersAdd } from '../projectWorkSpace/members-add/members-add';
 import { TaskCreate } from '../../task-create/task-create';
+import { TaskView } from '../projectWorkSpace/task/task-view/task-view';
 
 @Component({
   selector: 'app-project-workspace',
-  imports: [RouterOutlet, RouterLink, CommonModule, MembersAdd, NgClass, MembersView, TaskCreate],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    CommonModule,
+    MembersAdd,
+    NgClass,
+    MembersView,
+    TaskCreate,
+    TaskView,
+  ],
   templateUrl: './project-workspace.html',
   styleUrl: './project-workspace.scss',
 })

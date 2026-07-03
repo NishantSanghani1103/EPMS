@@ -1,0 +1,85 @@
+.profile-card{
+
+    border-radius:16px;
+
+}
+
+.profile-image{
+
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #eef2ff;
+
+}
+
+.card{
+
+    border-radius:16px;
+
+}
+
+.card-header{
+
+    padding:18px 24px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.card-footer{
+
+    padding:18px 24px;
+
+    border-top:1px solid #eef2f7;
+
+}
+
+.form-label{
+
+    font-weight:600;
+
+}
+
+.form-control{
+
+    height:46px;
+
+    border-radius:10px;
+
+}
+
+textarea.form-control{
+
+    height:auto;
+
+}
+
+.btn{
+
+    border-radius:10px;
+
+}
+
+.badge{
+
+    padding:8px 14px;
+
+}
+
+@media(max-width:992px){
+
+.profile-card{
+
+margin-bottom:20px;
+
+}
+
+}

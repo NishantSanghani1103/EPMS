@@ -31,6 +31,9 @@ export class AuthService {
     if (res.data?.role === 'manager') {
       this.router.navigate(['/manager/dashboard']);
     }
+    if (res.data?.role === 'employee') {
+      this.router.navigate(['/employee/dashboard']);
+    }
   }
   userLogOut() {
     if (confirm('Are You Want To LogOut ? ')) {

@@ -1,0 +1,174 @@
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <form (submit)="updateUser()" [formGroup]="userFrom">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h3 class="fw-bold mb-1">My Profile</h3>
+
+        <p class="text-muted mb-0">View and update your personal information.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Left Side -->
+
+      <div class="col-lg-4 mb-4">
+        <div class="card border-0 shadow-sm profile-card">
+          <div class="card-body text-center">
+            <img [src]="employee()?.profileImageUrl" />
+
+            <h4 class="fw-bold mb-1">{{ employee()?.firstName }} {{ employee()?.lastName }}</h4>
+            <span class="badge text-capitalize bg-success my-4">
+              {{ employee()?.status }} Employee
+            </span>
+
+            <div class="d-grid">
+              <input
+                type="file"
+                (change)="onFileSelected($event)"
+              
+                class="btn btn-outline-primary"
+              />
+              <i class="bi bi-camera me-2"></i>
+
+              Change Photo
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Information -->
+
+        <div class="card border-0 shadow-sm mt-4">
+          <div class="card-header bg-white">
+            <h6 class="mb-0">Quick Information</h6>
+          </div>
+
+          <div class="card-body">
+            <p>
+              <strong>Employee ID</strong>
+
+              <br />
+
+              EMP-{{ employee()?.id.split('-')[0] }}
+            </p>
+
+            <p>
+              <strong>Department</strong>
+
+              <br />
+
+              <span class="text-capitalize"> {{ employee()?.deparmentId?.name }}</span>
+            </p>
+
+            <p class="text-capitalize">
+              <strong>Role</strong>
+
+              <br />
+
+              {{ employee()?.role }}
+            </p>
+
+            <p class="mb-0">
+              <strong>Joining Date</strong>
+
+              <br />
+
+              {{ employee()?.createdAt | date }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Personal Information</h5>
+          </div>
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label"> First Name </label>
+
+                <input
+                  type="text"
+                  [value]="this.employee()?.firstName"
+                  class="form-control"
+                  formControlName="firstName"
+                />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label"> Last Name </label>
+
+                <input
+                  type="text"
+                  [value]="this.employee()?.lastName"
+                  class="form-control"
+                  formControlName="lastName"
+                />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label"> Email </label>
+                <input
+                  type="email"
+                  [value]="this.employee()?.email"
+                  class="form-control"
+                  formControlName="email"
+                />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label"> Phone Number </label>
+
+                <input
+                  [value]="this.employee()?.phone"
+                  type="text"
+                  class="form-control"
+                  formControlName="phone"
+                />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label"> Department </label>
+
+                <input
+                  type="text"
+                  [value]="this.employee()?.deparmentId.name"
+                  class="form-control text-capitalize"
+                  readonly
+                />
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label"> Role </label>
+
+                <input
+                  [value]="this.employee()?.role"
+                  type="text"
+                  class="form-control text-capitalize"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer bg-white">
+            <div class="text-end">
+              <button class="btn btn-outline-secondary me-2">Cancel</button>
+
+              <button class="btn btn-primary">
+                <i class="bi bi-check-circle me-2"></i>
+
+                Update Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

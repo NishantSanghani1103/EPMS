@@ -55,7 +55,7 @@ export class ApiService {
       headersObj['Authorization'] = `Bearer ${token}`;
     }
     const headers = new HttpHeaders(headersObj);
-    console.log(headers);
+    // console.log(headers);
     
     let response: any;
     try {
@@ -98,7 +98,7 @@ export class ApiService {
         this.toast.error(fieldErrors?.error);
         throw error;
       }
-      console.log(fieldErrors );
+      // console.log(fieldErrors );
      
       
       this.toast.error(fieldErrors.message  || 'Netwok Error');

@@ -1,54 +1,59 @@
 <div class="container-fluid py-4">
   <!-- Header -->
+  <form (submit)="taskSave()" [formGroup]="taskForm">
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="fw-bold mb-1">Create New Task</h2>
 
-  <div class="page-header d-flex justify-content-between align-items-center mb-4">
-    <div>
-      <h2 class="fw-bold mb-1">Create New Task</h2>
-
-      <p class="text-muted mb-0">Create and assign a new task to your team members.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <!-- Left -->
-
-    <div class="col-lg-8">
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Task Information</h5>
-        </div>
-
-        <div class="card-body">
-          <div class="mb-4">
-            <label class="form-label"> Task Title </label>
-
-            <input class="form-control" placeholder="Enter task title" />
-          </div>
-
-          <div class="mb-4">
-            <label class="form-label"> Description </label>
-
-            <textarea rows="8" class="form-control" placeholder="Describe this task..."></textarea>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <label class="form-label"> Start Date </label>
-
-              <input type="date" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label"> Due Date </label>
-
-              <input type="date" class="form-control" />
-            </div>
-          </div>
-        </div>
+        <p class="text-muted mb-0">Create and assign a new task to your team members.</p>
       </div>
+    </div>
 
-      <!-- Attachments -->
-<!-- 
+    <div class="row">
+      <!-- Left -->
+
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Task Information</h5>
+          </div>
+
+          <div class="card-body">
+            <div class="mb-4">
+              <label class="form-label"> Task Title </label>
+
+              <input formControlName="title" class="form-control" placeholder="Enter task title" />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label"> Description </label>
+
+              <textarea
+                formControlName="description"
+                rows="8"
+                class="form-control"
+                placeholder="Describe this task..."
+              ></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label class="form-label"> Start Date </label>
+
+                <input formControlName="startDate" type="date" class="form-control" />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label"> Due Date </label>
+
+                <input formControlName="dueDate" type="date" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attachments -->
+        <!-- 
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-white">
           <h5 class="mb-0">Attachments</h5>
@@ -66,18 +71,18 @@
           </div>
         </div>
       </div> -->
-    </div>
+      </div>
 
-    <!-- Right -->
+      <!-- Right -->
 
-    <div class="col-lg-4">
-      <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Assignment</h5>
-        </div>
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Assignment</h5>
+          </div>
 
-        <div class="card-body">
-          <!-- <div class="mb-3">
+          <div class="card-body">
+            <!-- <div class="mb-3">
             <label class="form-label"> Project </label>
 
             <select class="form-select">
@@ -87,73 +92,89 @@
             </select>
           </div> -->
 
-          <div class="mb-3">
-            <label class="form-label"> Assign Employee </label>
+            <div class="mb-3">
+              <label class="form-label"> Assign Employee </label>
 
-            <select class="form-select text-capitalize">
-              @for (item of empData(); track item.id) {
-                <option>{{ item.user.firstName }} {{item.user.lastName}}</option>
-              }
-            </select>
-          </div>
+              <select formControlName="assignedTo" class="form-select text-capitalize">
+                <option value="" disabled>Select Employee</option>
+                @for (item of empData(); track item.id) {
+                  <option [value]="item.userId">
+                    {{ item.user.firstName }} {{ item.user.lastName }}
+                  </option>
+                }
+              </select>
+            </div>
 
-          <div class="mb-3">
-            <label class="form-label"> Priority </label>
+            <div class="mb-3">
+              <label class="form-label"> Priority </label>
 
-            <select  class="form-select">
-              <option>High</option>
+              <select formControlName="priority" class="form-select">
+                <option value="high">High</option>
 
-              <option selected >Medium</option>
+                <option value="medium" selected>Medium</option>
 
-              <option>Low</option>
-            </select>
-          </div>
+                <option value="low">Low</option>
+              </select>
+            </div>
 
-          <div class="mb-3">
-            <label class="form-label"> Status </label>
+            <div class="mb-3">
+              <label class="form-label"> Status </label>
 
-            <select class="form-select">
-              <option>To Do</option>
+              <select formControlName="status" class="form-select">
+                <option value="todo">To Do</option>
 
-              <option>In Progress</option>
+                <option value="in_progress">In Progress</option>
 
-              <option>Completed</option>
-            </select>
-          </div>
+                <option value="completed">Completed</option>
 
-          <div class="mb-3">
-            <label class="form-label"> Estimated Hours </label>
+                <option value="cancelled">Cancelled</option>
 
-            <input type="number" class="form-control" placeholder="08" />
+                <option value="review">Review</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label"> Estimated Hours </label>
+
+              <input
+                formControlName="estimatedHours"
+                type="number"
+                class="form-control"
+                placeholder="08"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Notes -->
+        <!-- Notes -->
 
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Notes</h5>
-        </div>
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Notes</h5>
+          </div>
 
-        <div class="card-body">
-          <textarea rows="6" class="form-control" placeholder="Additional notes..."></textarea>
+          <div class="card-body">
+            <textarea
+              formControlName="notes"
+              rows="6"
+              class="form-control"
+              placeholder="Additional notes..."
+            ></textarea>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
+    <!-- Footer -->
 
-  <div class="d-flex justify-content-end gap-3 mt-4">
-    <button class="btn btn-outline-secondary px-4">Cancel</button>
+    <div class="d-flex justify-content-end gap-3 mt-4">
+      <button (click)="taskForm.reset()" class="btn btn-outline-secondary px-4">Cancel</button>
 
-    <button class="btn btn-outline-primary px-4">Save Draft</button>
+      <button [disabled]="taskForm.invalid" type="submit" class="btn btn-primary px-4">
+        <i class="bi bi-check-circle me-2"></i>
 
-    <button class="btn btn-primary px-4">
-      <i class="bi bi-check-circle me-2"></i>
-
-      Create Task
-    </button>
-  </div>
+        Create Task
+      </button>
+    </div>
+  </form>
 </div>
