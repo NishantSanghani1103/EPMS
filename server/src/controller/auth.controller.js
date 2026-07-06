@@ -1,5 +1,5 @@
 import { messages } from "../messages/index.js"
-import { loginService, registerService } from "../services/index.js";
+import { forgotPasswordService, loginService, registerService } from "../services/index.js";
 import fs from "fs";
 import { response } from "../utils/index.js"
 
@@ -56,6 +56,34 @@ export const loginController = async (req, res) => {
             message: messages.auth.SIGNIN_SUCCESS,
             data: data.dataRes,
             token: data.token
+        })
+
+    } catch (error) {
+        return response(res, {
+            status: false,
+            statusCode: 500,
+            message: error.message
+        })
+    }
+}
+
+export const forgotPasswordController = async (req, res) => {
+    try {
+        const data = await forgotPasswordService(req.body)
+
+        if (!data.status) {
+            return response(res,{
+                status: data.status,
+                statusCode: data.statusCode,
+                message: data.message
+            }) 
+        }
+
+        return response(res, {
+            status: true,
+            statusCode: 201,
+            message: messages.auth.PASSWORD_CHANGED,
+            data:data.res
         })
 
     } catch (error) {

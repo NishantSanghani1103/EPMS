@@ -1,5 +1,5 @@
 import { messages } from "../messages/index.js"
-import { departmentModel } from "../models/index.js"
+import { departmentModel, userModel } from "../models/index.js"
 
 export const departmentAddService = async (data) => {
     try {
@@ -29,7 +29,14 @@ export const departmentAddService = async (data) => {
 
 export const departmentViewService = async () => {
     try {
-        const data = await departmentModel.findAll({ order: [["createdAt", "DESC"]] })
+        const data = await departmentModel.findAll({ order: [["createdAt", "DESC"]] ,
+            include:[
+                {
+                    model:userModel,
+                    as:"users"
+                }
+            ]
+        },)
         return data
     } catch (error) {
         throw error

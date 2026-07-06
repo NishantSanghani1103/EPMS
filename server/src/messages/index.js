@@ -19,6 +19,8 @@ export const messages = {
         SIGNUP_SUCCESS: 'SignUp successfully',
         INVALID_CREDENTIAL: 'User id or password incorrect',
         INVALID_OTP: 'Invalid OTP',
+        CONFIRM_PASSWORD_ERROR:"Confirm Password Doesn't Matched",
+        PASSWORD_CHANGED:"Password Changed Successfully"
     },
     user: {
         USER_NOT_FOUND: 'User not found',
@@ -75,7 +77,9 @@ export const messages = {
     project: {
         PROJECT_ADDED: "Project Added Successfully",
         PROJECT_VIEWD: "Project Viewd Successfully",
-        PROJECT_NOT_FOUND: "Project Not Found"
+        PROJECT_NOT_FOUND: "Project Not Found",
+        PROJECT_EDITED:"Project Edit Successfully",
+        PROJECT_DELETED:"Project Deleted Successfully"
     },
     projectMember: {
         PROJECT_MEMBER_VIEWD: "Project Member Viewd Successfully",

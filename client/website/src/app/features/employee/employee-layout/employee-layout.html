@@ -13,14 +13,14 @@
                 </a>
             </li>
 
-            <li class="active">
+            <li [class.active]="router.url === '/employee/dashboard'">
                 <a routerLink="/employee/dashboard">
                     <i class="bi bi-speedometer2"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
-            <li>
+            <li [class.active]="router.url === '/employee/myTask'">
                 <a routerLink="/employee/myTask">
                     <i class="bi bi-list-task"></i>
                     <span>My Tasks</span>
@@ -28,7 +28,7 @@
             </li>
 
 
-            <li>
+            <li [class.active]="router.url === '/employee/profile'">
                 <a routerLink="/employee/profile">
                     <i class="bi bi-person-circle"></i>
                     <span>Profile</span>
@@ -83,7 +83,7 @@
                 </button>
 
                 <img
-                    src="https://i.pravatar.cc/45?img=12"
+                    [src]="userData()?.profileImageUrl"
                     class="profile-img"
                     alt="Profile">
 

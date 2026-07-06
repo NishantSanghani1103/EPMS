@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../core/service/auth.service';
 import { ApiService } from '../../../core/service/api.service';
 import { API_ROUTES } from '../../../core/constant/api.routes';
@@ -14,6 +14,7 @@ export class EmployeeLayout {
   authService = inject(AuthService);
   apiService = inject(ApiService);
   userData = signal<any>(null);
+  router=inject(Router)
   ngOnInit() {
     const userDetails = JSON.parse(localStorage.getItem('USER') ?? '[]');
     console.log(userDetails);

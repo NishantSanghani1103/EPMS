@@ -1,6 +1,6 @@
 import { departmentAddService, departmentDeleteService, departmentEditService, departmentViewByIdService, departmentViewService } from "./department.service.js";
-import { loginService } from "./login.service.js";
-import { projectAddService, projectSingleViewService, projectViewByIdService, projectViewService } from "./project.service.js";
+import { forgotPasswordService, loginService } from "./login.service.js";
+import { projectAddService, projectDeleteService, projectEditService, projectSingleViewService, projectViewByIdService, projectViewService } from "./project.service.js";
 import { projectMemberAddService, projectMemberViewByProjectIdService, projectMemberViewService } from "./projectMember.service.js";
 import { registerService } from "./register.service.js";
 import { taskAddService, taskViewByManagerAndProjectIdService, taskViewByTokenService, taskViewService } from "./task.service.js";
@@ -9,6 +9,7 @@ import { userAddService, userDeleteService, userEditByTokenService, userEditServ
 export {
     registerService,
     loginService,
+    forgotPasswordService,
 
     departmentAddService,
     departmentEditService,
@@ -23,7 +24,7 @@ export {
     userEditService,
     userViewByTokenService,
     userEditByTokenService,
-    
+
     projectAddService,
     projectViewService,
     projectViewByIdService,
@@ -31,10 +32,12 @@ export {
     projectMemberViewService,
     projectSingleViewService,
     projectMemberViewByProjectIdService,
+    projectEditService,
+    projectDeleteService,
 
     taskAddService,
     taskViewService,
     taskViewByManagerAndProjectIdService,
     taskViewByTokenService,
-    
+
 }

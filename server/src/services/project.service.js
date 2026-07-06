@@ -35,9 +35,14 @@ export const projectAddService = async (data) => {
     }
 }
 
-export const projectViewService = async () => {
+export const projectViewService = async (departmentId) => {
     try {
+        const whereCondition = {}
+        if(departmentId){
+            whereCondition.departmentId=departmentId
+        }
         const data = await projectModel.findAll({
+            where: whereCondition,
             include: [
                 {
                     model: userModel,
@@ -50,8 +55,8 @@ export const projectViewService = async () => {
                     attributes: ["name"]
                 },
                 {
-                    model:projectMemberModel,
-                    as:"projectMembers"
+                    model: projectMemberModel,
+                    as: "projectMembers"
                 }
             ],
             order: [["createdAt", "DESC"]]
@@ -109,13 +114,66 @@ export const projectSingleViewService = async (id) => {
                     attributes: ["name"]
                 },
                 {
-                    model:projectMemberModel,
-                    as:"projectMembers"
+                    model: projectMemberModel,
+                    as: "projectMembers"
                 }
             ]
         })
 
         return data
+    } catch (error) {
+        throw error
+    }
+}
+
+export const projectEditService = async (id, data) => {
+    try {
+        const checkprojecct = await projectModel.findByPk(id)
+
+        if (!checkprojecct) {
+            return {
+                status: false,
+                statusCode: 401,
+                message: messages.project.PROJECT_NOT_FOUND
+            }
+        }
+        const res = await projectModel.update(data, {
+
+            where: {
+                id
+            }
+        })
+
+        return {
+            status: true,
+            res
+        }
+    } catch (error) {
+        throw error
+    }
+}
+
+export const projectDeleteService = async (id) => {
+    try {
+        console.log(id);
+
+        const checkProject = await projectModel.findByPk(id)
+        console.log(checkProject);
+
+
+        if (!checkProject) {
+            return {
+                status: false,
+                statusCode: 401,
+                message: messages.project.PROJECT_NOT_FOUND
+            }
+        }
+        const res = await checkProject.destroy()
+
+        return {
+            status: true,
+            res
+        }
     } catch (error) {
         throw error
     }

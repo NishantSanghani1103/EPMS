@@ -21,17 +21,27 @@ import { EmployeeLayout } from './features/employee/employee-layout/employee-lay
 import { EmployeeDashboard } from './features/employee/employee-dashboard/employee-dashboard';
 import { EmpTaskView } from './features/employee/emp-task-view/emp-task-view';
 import { EmpProfile } from './features/employee/emp-profile/emp-profile';
+import { ForgotPassword } from './auth/forgot-password/forgot-password';
+import { AuthLayouts } from './auth/auth-layouts/auth-layouts';
+import { loginGuard } from './core/guard/login-guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
+    component: AuthLayouts,
+    canActivate:[loginGuard],
+    children: [
+      {
+        path: '',
+        component: Login,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPassword,
+      },
+    ],
   },
-  {
-    path: '',
-    component: Login,
-  },
+
   {
     path: 'unauthorized',
     component: Unauthorized,
@@ -90,6 +100,10 @@ export const routes: Routes = [
         children: [
           {
             path: 'add',
+            component: ProjectAdd,
+          },
+          {
+            path: 'edit/:id',
             component: ProjectAdd,
           },
           {

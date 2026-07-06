@@ -5,10 +5,11 @@ import { ApiService } from '../../core/service/api.service';
 import { FormValidation } from '../../core/utils/form-validation/form-validation';
 import { API_ROUTES } from '../../core/constant/api.routes';
 import { AuthService } from '../../core/service/auth.service';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, FormValidation],
+  imports: [ReactiveFormsModule, FormValidation, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

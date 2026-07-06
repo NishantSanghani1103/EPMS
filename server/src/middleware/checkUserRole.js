@@ -3,8 +3,8 @@ import { response } from "../utils/index.js";
 
 export const checkRole = (...roles) => {
     return (req, res, next) => {
-        console.log(roles);
-        console.log(req.user);
+        // console.log(roles);
+        // console.log(req.user);
         if (roles.includes(req.user.role)) {
            return next()
         }

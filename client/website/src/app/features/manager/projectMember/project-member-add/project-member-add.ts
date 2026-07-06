@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ApiService } from '../../../../core/service/api.service';
 
 @Component({
   selector: 'app-project-member-add',
@@ -7,11 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './project-member-add.scss',
 })
 export class ProjectMemberAdd {
+  apiService = inject(ApiService);
+  
   ngOnInit() {
     this.getProjectById();
   }
 
-  async getProjectById() {
-    
-  }
+  async getProjectById() {}
 }

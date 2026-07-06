@@ -8,6 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
+import { ApiService } from '../../../core/service/api.service';
+import { API_ROUTES } from '../../../core/constant/api.routes';
 
 @Component({
   selector: 'app-emp-profile',
@@ -17,9 +19,10 @@ import { ROUTER_OUTLET_DATA } from '@angular/router';
 })
 export class EmpProfile {
   employee = inject<any>(ROUTER_OUTLET_DATA);
-
+  apiService = inject(ApiService);
   fb = inject(FormBuilder);
   userFrom!: FormGroup;
+  selectedFile!: File;
 
   ngOnInit() {}
   constructor() {
@@ -64,17 +67,42 @@ export class EmpProfile {
   }
 
   async updateUser() {
-    console.log(this.userFrom.value);
+
+      const formData = new FormData();
+      formData.append('firstName', this.userFrom.get('firstName')?.value);
+      formData.append('lastName', this.userFrom.get('lastName')?.value);
+      formData.append('email', this.userFrom.get('email')?.value);
+      formData.append('phone', this.userFrom.get('phone')?.value);
+
+      if (this.selectedFile) {
+        formData.append('profileImage', this.selectedFile);
+      }
+      console.log(formData);
+      
+      const res = await this.apiService.request(
+        'PUT',
+        API_ROUTES.user.userEditByToken,
+        formData,
+        null,
+        {
+          showLoader: true,
+          useToken: true,
+          showToaster: true,
+        },
+      );
+      console.log(res);
+    
+    // console.log(this.userFrom.value);
   }
 
   onFileSelected(event: any) {
-    const fileName = event.target.files[0].name;
-    console.log(fileName);
+    const file: File = event.target.files && event.target.files[0];
+    if (!file) return;
+    console.log(file.name);
 
-    if (fileName) {
-      this.userFrom.patchValue({
-        profileImage: fileName,
-      });
-    }
+    this.selectedFile = file;
+    this.userFrom.patchValue({
+      profileImage: file.name,
+    });
   }
 }

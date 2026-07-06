@@ -1,6 +1,7 @@
 export const API_ROUTES = {
   login: {
     base: 'auth/login',
+    forgotPassword: 'auth/forgot-password',
   },
   dept: {
     deptView: 'department/view',
@@ -16,12 +17,15 @@ export const API_ROUTES = {
     getById: (id: string | null) => `user/view/${id}`,
     userEdit: (id: string | null) => `user/edit/${id}`,
     getByToken: 'user/viewByToken',
+    userEditByToken: 'user/editByToken',
   },
   project: {
     projectView: 'project/view',
     projectAdd: 'project/add',
     getByManger: 'project/viewByManager',
     getById: (id: string) => `project/view/${id}`,
+    projectEdit: (id: string | null) => `project/edit/${id}`,
+    projectDelete:(id:string)=>`project/delete/${id}`
   },
   projectMember: {
     memberAdd: 'project-member/add',

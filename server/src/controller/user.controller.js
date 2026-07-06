@@ -159,9 +159,14 @@ export const userViewByTokenController = async (req, res) => {
 export const userEditByTokenController = async (req, res) => {
     try {
         const { id } = req.user
+        console.log("sfdnfjdfbd", id);
+        // console.log(req.body);
+
+
         if (req.files && req.files.profileImage) {
             req.body.profileImage = req.files.profileImage[0].filename
         }
+        // console.log(req.body);
         const data = await userEditByTokenService(id, req.body)
 
         if (!data.status) {

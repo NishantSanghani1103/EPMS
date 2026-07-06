@@ -1,6 +1,6 @@
-import { loginController, registerController } from "./auth.controller.js";
+import { forgotPasswordController, loginController, registerController } from "./auth.controller.js";
 import { departmentAddController, departmentDeleteController, departmentEditController, departmentViewByIdController, departmentViewController } from "./department.controller.js";
-import { projectAddController, projectSingleViewController, projectViewByIdController, projectViewController } from "./project.controller.js";
+import { projectAddController, projectDeleteController, projectEditController, projectSingleViewController, projectViewByIdController, projectViewController } from "./project.controller.js";
 import { projectMemberAddCotnroller, projectMemberViewByProjectIdController, projectMemberViewController } from "./projectMember.controller.js";
 import { taskAddController, taskViewByEmpController, taskViewByManagerAndProjectIdController, taskViewController } from "./task.controller.js";
 import { userAddController, userDeleteCotnroller, userEditByTokenController, userEditController, userViewByIdController, userViewByTokenController, userViewController } from "./user.controller.js";
@@ -8,6 +8,7 @@ import { userAddController, userDeleteCotnroller, userEditByTokenController, use
 export {
     registerController,
     loginController,
+    forgotPasswordController,
 
     departmentAddController,
     departmentEditController,
@@ -30,6 +31,8 @@ export {
     projectMemberViewController,
     projectSingleViewController,
     projectMemberViewByProjectIdController,
+    projectEditController,
+    projectDeleteController,
 
     taskAddController,
     taskViewController,

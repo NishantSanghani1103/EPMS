@@ -2,6 +2,7 @@ import express from "express"
 import { userAddController, userDeleteCotnroller, userEditByTokenController, userEditController, userViewByIdController, userViewByTokenController, userViewController } from "../controller/index.js"
 import { checkRole, checkToken } from "../middleware/index.js"
 import { userValidation, uuidValidation, validate } from "../validation/index.js"
+import { uploadFiles } from "../utils/index.js"
 
 export const userRoutes = express.Router()
 
@@ -44,10 +45,9 @@ userRoutes.put("/edit/:id",
 
 
 userRoutes.put("/editByToken",
-    uuidValidation,
-    userValidation,
-    validate,
+ 
     checkToken,
     checkRole("employee"),
+    uploadFiles("user","profileImage",1),
     userEditByTokenController
 )

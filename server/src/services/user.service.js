@@ -239,18 +239,14 @@ export const userViewByTokenService = async (id) => {
 
 export const userEditByTokenService = async (id, data) => {
     try {
-        const { password, confirmPassword } = data
-        if (password !== confirmPassword) {
-            return {
-                status: false,
-                statusCode: 401,
-                message: messages.general.VALIDATION_ERROR
-            }
-        }
-        const encrptedPassword = await hashedPassword(password)
-        delete data.confirmPassword
+        console.log(data);
+
         const res = await userModel.update({
-            ...data, password: encrptedPassword
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            profileImage:data.profileImage
         },
             {
                 where: {

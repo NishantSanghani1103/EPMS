@@ -1,6 +1,6 @@
 <div class="container-fluid py-4">
   <div class="mb-4">
-    <h2 class="fw-bold">Add Project</h2>
+    <h2 class="fw-bold">{{pId() ? 'Update' : 'Add'}} Project</h2>
 
     <p class="text-muted">Create a new project and assign a project manager.</p>
   </div>
@@ -133,7 +133,7 @@
 
             <button type="reset" class="btn btn-outline-warning">Reset</button>
 
-            <button type="submit" [disabled]="projectAddForm.invalid" class="btn btn-primary">Save Project</button>
+            <button type="submit" [disabled]="projectAddForm.invalid" class="btn btn-primary">{{pId() ? 'Update' : 'Add'}} Project</button>
           </div>
         </form>
       </div>

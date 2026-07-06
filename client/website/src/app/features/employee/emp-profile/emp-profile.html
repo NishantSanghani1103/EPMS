@@ -15,7 +15,11 @@
       <div class="col-lg-4 mb-4">
         <div class="card border-0 shadow-sm profile-card">
           <div class="card-body text-center">
-            <img [src]="employee()?.profileImageUrl" />
+            <img
+              alt="Profile Image"
+              class="profile-image mb-3"
+              [src]="employee()?.profileImageUrl"
+            />
 
             <h4 class="fw-bold mb-1">{{ employee()?.firstName }} {{ employee()?.lastName }}</h4>
             <span class="badge text-capitalize bg-success my-4">
@@ -26,7 +30,6 @@
               <input
                 type="file"
                 (change)="onFileSelected($event)"
-              
                 class="btn btn-outline-primary"
               />
               <i class="bi bi-camera me-2"></i>
